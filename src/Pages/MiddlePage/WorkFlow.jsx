@@ -14,6 +14,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { useAuth } from '../../components/context/AuthContext';
+import { Card } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,7 +30,8 @@ export default function WorkFlow() {
   const classes = useStyles();
 
   return (
-    <Timeline align="alternate">
+    <Card style={{marginBottom: '20px'}}>
+      <Timeline align="alternate">
       <TimelineItem>
         <TimelineOppositeContent>
           <Typography variant="body2" color="textSecondary">
@@ -104,5 +106,7 @@ export default function WorkFlow() {
         </TimelineContent>
       </TimelineItem>
     </Timeline>
+    </Card>
+    
   );
 }

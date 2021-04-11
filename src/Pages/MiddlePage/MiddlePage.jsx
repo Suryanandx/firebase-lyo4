@@ -26,7 +26,8 @@ import ManualBox from './ManualBox';
 import { db } from '../.././firebase'
 import { firebaseLooper } from '../.././utils/tools'
 import TestData from '../Tests/TestData';
-
+import GraphData from './Graph/GraphData';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -97,13 +98,13 @@ const MiddlePage = () =>{
    const [rData, setRData] = useState([])
     const history = useHistory()
   useEffect(() => {
-          db.collection('recipeeData').where('rid', '==', rid).onSnapshot(doc => {
+          db.collection('recipeeData').where('rid', '==', rid).get().then(doc => {
               const data = firebaseLooper(doc)
             setRData(data)
             console.log(data)
             
           })
-      },[])
+      },[rData.length])
 
     return (
       <>
@@ -118,6 +119,14 @@ const MiddlePage = () =>{
       }}
     >
       <Container maxWidth={false}>
+        
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <div>
+                      <Typography variant='h1'><b>Good Morning!</b></Typography>
+              <Typography variant='h5'>Here's an overview of the available data!</Typography>
+                  </div>
+                  </div>
+                  <br/>
         <Grid
           container
           spacing={3}
@@ -166,8 +175,13 @@ const MiddlePage = () =>{
             xl={9}
             xs={12}
           >
-            
-            {/* <RecipeeList/> */}<TestData data={rData} />
+            <div>
+              {/* <GraphData data={rData} /> */}
+              {/* <RecipeeList/> */}
+                <Skeleton variant="circle" width={40} height={40} />
+              <Skeleton variant="rect" style={{width: '100%'}} height={360} />
+            </div>
+           
           </Grid>
           <Grid
             item
@@ -175,7 +189,9 @@ const MiddlePage = () =>{
             md={6}
             xl={3}
             xs={12}
-          >  <JobGraph/>
+          >  
+          
+          <JobGraph/>
            
           </Grid>
           <Grid

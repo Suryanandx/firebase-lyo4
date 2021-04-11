@@ -123,10 +123,7 @@ const ComponentDataBox = ({data}) => {
                 <Button style={{ marginLeft: "20%"}} onClick={handleClickOpen}  color="secondary" startIcon={<DeleteIcon/>}>Delete</Button>
            
               </TableCell>
-               <TableCell style={{ width: 160 }} align="right">
-                <Button style={{ marginLeft: "20%", color: 'orangered'}} href={`/Module/${data.id}/Components`}  startIcon={<ArrowForwardIosIcon/>}>Open</Button>
-           
-              </TableCell>
+              
 
             </TableRow>
         </TableBody>
@@ -192,6 +189,18 @@ const ComponentDataBox = ({data}) => {
                           name="title"
                           autoFocus
                           onChange={(e) => setContentName(e.target.value)}
+                        />
+                        <TextField
+                        label="Expected Value"
+                        defaultValue={value}
+                          variant="outlined"
+                          margin="normal"
+                          required
+                          fullWidth
+                          id="title"
+                          name="title"
+                          autoFocus
+                          onChange={(e) => setValue(e.target.value)}
                         />
                        
                     

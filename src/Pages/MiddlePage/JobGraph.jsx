@@ -1,4 +1,4 @@
-import { Container, Typography } from '@material-ui/core';
+import { Card, Container, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react'
 import { Doughnut, Pie } from 'react-chartjs-2';
@@ -58,14 +58,14 @@ const JobGraph = () => {
 };
 
     return (
-        <Container>
+        <Card>
             <Typography variant='h1' align='center'><b>Job Data</b></Typography>
             <Doughnut data={data}/>
             <br/>
             <Alert severity='warning'>Pending Jobs</Alert>
             <br/>
             <Alert severity='success'>Completed Jobs</Alert>
-        </Container>
+        </Card>
     )
 }
 

@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const StepDashboardLayout = ({ match}) => {
+const ModuleDashboardLayout = ({ match}) => {
   const classes = useStyles()
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
@@ -64,4 +64,4 @@ const StepDashboardLayout = ({ match}) => {
   );
 };
 
-export default StepDashboardLayout;
+export default ModuleDashboardLayout;

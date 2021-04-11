@@ -35,14 +35,14 @@ import { firebaseLooper } from '../../utils/tools';
 
 const items = [
   {
-        title: 'Recipe-values',
-      href: '/Recipe',
+        title: 'Components',
+      href: '/Module',
         icon: ActivityIcon,
        
     },
      {
-        title: 'Add-Recipee-Data',
-        href: '/Recipe',
+        title: 'Add-Component',
+        href: '/Module',
         icon: AddIcon
 
     }

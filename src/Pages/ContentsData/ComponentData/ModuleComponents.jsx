@@ -10,7 +10,8 @@ import { useHistory } from 'react-router-dom';
 import { db } from '../../../firebase';
 import { firebaseLooper } from '../../../utils/tools';
 import ComponentDataBox from './ComponentDataBox';
-
+import { Skeleton } from '@material-ui/lab';
+import ModuleDashboardLayout from '../../../components/ModuleSidebar/ModuleDashboardLayout'
 const useStyles = makeStyles((theme) => ({
   layoutRoot: {
     backgroundColor: 'white',
@@ -147,13 +148,13 @@ const ModuleComponents = ({match}) => {
 
 
     return (
-        <>
-        
+        <div style={{display: 'flex'}}>
+        <ModuleDashboardLayout match={match}/>
          <div className={classes.wrapper}>
         <div className={classes.container}>
           <Card className={classes.content}>
             <Container >
-             <Typography variant='h2' align='center' gutterBottom><b>Modules Data</b> </Typography>
+             <Typography variant='h2' align='center' gutterBottom><b>Modules Components</b> </Typography>
         <div className={classes.container}>
           <Card className={classes.content}>
           
@@ -164,7 +165,7 @@ const ModuleComponents = ({match}) => {
             <ComponentDataBox key={data.id} data={data} match={match} />
           ))}
            
-           
+          
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />
@@ -187,7 +188,6 @@ const ModuleComponents = ({match}) => {
               ActionsComponent={TablePaginationActions}
             />
           </TableRow>
-              <Button style={{width: '15%', height: '50px', color: '#ff7a00', borderRadius: '20px'}} variant='outlined' href={`/machine-data/${match.params.id}/Add-module`}>ADD New </Button>
         </TableFooter>
           </Card>
         </div>
@@ -196,7 +196,7 @@ const ModuleComponents = ({match}) => {
         </div>
       </div>
          
-      </>
+      </div>
      
     )
 }

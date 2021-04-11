@@ -33,26 +33,15 @@ import Recipes from "./Pages/Recipee/Recipes";
 import AddRecipe from "./Pages/Recipee/AddRecipe";
 import RecipeeValuesView from "./Pages/Recipee/RecipeeValues/RecipeeValuesView";
 import AddRecipeeValues from "./Pages/Recipee/RecipeeValues/AddRecipeeValues";
-import RecipeeList from "./Pages/MiddlePage/Graph/RecipeeList";
 import JobsList from "./Pages/JobsData/JobsList";
-import HistoryChart from "./Pages/MiddlePage/Graph/FetchRecipee";
 import ModuleComponents from "./Pages/ContentsData/ComponentData/ModuleComponents";
-import { useEffect, useState } from "react";
-import { db } from "./firebase";
-import { firebaseLooper } from "./utils/tools";
+import Manuals from "./Pages/Manuals/Manuals";
+import AddManuals from "./Pages/Manuals/AddManuals";
+import AddComponent from "./Pages/ContentsData/ComponentData/AddComponents";
 
 
 function App() {
-  const [rData, setRData] = useState([])
-   
-  useEffect(() => {
-          db.collection('recipeeData').where('rid', '==', `lKZXIngc5xoTup6kZXwf`).onSnapshot(doc => {
-              const data = firebaseLooper(doc)
-            setRData(data)
-            console.log(data)
-            
-          })
-      }, [])
+
   return (
     <>
        
@@ -82,15 +71,18 @@ function App() {
          <AppRoute path="/Module/:id/Components" exact component={ModuleComponents} layout={MainLayout} />
         <AppRoute path="/users/add-user" exact component={AddUser} layout={DashboardLayout}/>
         <AppRoute path="/account" exact component={AccountDetails} layout={DashboardLayout}/> 
-        <AppRoute path="/Content/:id/Steps" exact component={Steps} layout={MainLayout}/>
-        <AppRoute path="/steps/:id/Add-step" exact component={AddSteps} layout={MainLayout}/>
+        <AppRoute path="/Manuals/:id/Steps" exact component={Steps} layout={MainLayout}/>
+        <AppRoute path="/Manuals/:id/Add-Step" exact component={AddSteps} layout={MainLayout}/>
         <AppRoute path="/" exact component={MiddlePage} layout={DashboardLayout}/>
         <AppRoute path="/users" exact component={Users} layout={DashboardLayout}/>
         <AppRoute path="/machine-data/Batch/:id/Batch" exact component={BatchInfo} layout={MainLayout}/>
         <AppRoute path="/chat" exact component={VideoChat} layout={DashboardLayout} />
+        <AppRoute path="/machine-data/:id/Add-Manuals" exact component={AddManuals} layout={MainLayout} />
+         <AppRoute path="/Module/:id/Add-Component" exact component={AddComponent} layout={MainLayout} />
         {/*/machine-data/Reports/BXLmS3MAwjf25qEdubL6/Recipes*/}
-       
+         <AppRoute path="/machine-data/Manuals/:id/Manuals" exact component={Manuals} layout={MainLayout} />
           <AppRoute path="/video-call" exact component={RenderVc} layout={DashboardLayout} />
+            <AppRoute path="/test" exact component={Tests} layout={MainLayout} />
 
       </Switch>
     </Router>

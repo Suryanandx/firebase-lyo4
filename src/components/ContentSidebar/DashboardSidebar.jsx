@@ -56,6 +56,12 @@ const items = [
         href: '/machine-data/Job',
         icon: WorkOutlineIcon
 
+    },
+      {
+        title: 'Manuals',
+        href: '/machine-data/Manuals',
+        icon: WorkOutlineIcon
+
     }
     
 ];

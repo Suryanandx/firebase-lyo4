@@ -13,8 +13,6 @@ import PropTypes from 'prop-types';
 import ContentDashboardLayout from '../../components/ContentSidebar/ContentDashboardLayout';
 import { useHistory } from 'react-router-dom';
 
-
-
 const useStyles = makeStyles((theme) => ({
   layoutRoot: {
     backgroundColor: 'white',

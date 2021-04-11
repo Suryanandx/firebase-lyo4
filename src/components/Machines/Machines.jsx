@@ -50,6 +50,8 @@ const Machines = () => {
             }}
     >
         <Container maxWidth={false} >
+            <Typography variant='h1'><b>Machines</b></Typography>
+             <Typography variant='h5'>These are the available Machines</Typography>
             <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                  <div style={{ width: 300 }}>
                 <Autocomplete

@@ -37,13 +37,13 @@ const RecipeeList = () => {
           native
           value={title}
           required
-          onChange={handleChange}
+          onChange={(e) => setTitle(e.target.value)}
           
         >
            
           {
               recipeeData.map(data => (
-                  <MenuItem key={data.title} value={data.id}>{data.title}</MenuItem>
+                  <option key={data.title} value={data.id}>{data.title}</option>
                 
               ))
           }
@@ -52,7 +52,7 @@ const RecipeeList = () => {
        
             </Grid>
         
-      
+      <h1>{title}</h1>
        <FetchRecipee title={title}/>
         </Container>
     )

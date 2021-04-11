@@ -7,7 +7,9 @@ import { firebaseLooper } from '../../utils/tools';
 import AddIcon from '@material-ui/icons/Add';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Page from '../../components/Page';
-import StepDashboardLayout from '../../components/StepSidebar/StepDashboardLayout';
+import ManualDashboardLayout from '../../components/ManualSidebar/ManualDashboardLayout'
+import OutlinedTimeline from './Timeline';
+
 const useStyles = makeStyles((theme) =>( {
     add: {
      
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) =>( {
   [theme.breakpoints.up('lg')]: {
     paddingLeft: 256
   },
-   background:'linear-gradient(#f3f3f3, #e7e7e7)' 
+  
   },
   container: {
       display: 'flex',
@@ -39,15 +41,13 @@ const useStyles = makeStyles((theme) =>( {
   overflow: 'hidden'
   },
   content: {
-     background:'linear-gradient(#f3f3f3, #e7e7e7)' ,
+
       flex: '1 1 auto',
   height: '100%',
   overflow: 'auto'
     },
 }))
 
-
-    
 
 const Steps = ({match}) => {
     const classes = useStyles();
@@ -59,19 +59,20 @@ const Steps = ({match}) => {
     }
     useEffect(() => {
         
-        db.collection('steps').where('cid', '==', `${match.params.id}`).onSnapshot((snapshot) => {
+        db.collection('stepData').where('manual_id', '==', `${match.params.id}`).onSnapshot((snapshot) => {
             const stepData = firebaseLooper(snapshot)
             setSteps(stepData)
             
         })
 
-    }, [])
+    }, [steps])
     
   
 
     return (
         <Page title="Steps">
-            <StepDashboardLayout match={match}/>
+            <ManualDashboardLayout match={match}/>
+           
             <div className={classes.wrapper}>
         <div className={classes.container}>
           <Card className={classes.content}>
@@ -80,15 +81,21 @@ const Steps = ({match}) => {
         startIcon={<AddIcon/>} 
         variant="contained"
         color="primary" className={classes.add}>
-        <Link style={{color: "white" ,textDecoration: "none"}} to={`/steps/${match.params.id}/Add-step`}>
+        <Link style={{color: "white" ,textDecoration: "none"}} to={`/Manuals/${match.params.id}/Add-Step`}>
                 Add Step
         </Link>
         </Button>
-        {
-            steps.map((data) => (
-                <StepItem key={data.id} data={data} />
-            ))
-        }
+            
+                {steps&&
+                    steps.map((data) => (
+                        <StepItem key={data.id} data={data} />
+                        
+                    ))
+                   
+                }
+        
+              
+       
           </Card>
         </div>
       </div>

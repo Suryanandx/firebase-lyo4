@@ -10,7 +10,7 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 const useStyles = makeStyles((theme) => ({
   root: {
     borderBottomColor: "black",
-    backgroundColor: theme.palette.background.dark,
+    backgroundColor: 'white',
    
   },
   statsItem: {
@@ -22,37 +22,29 @@ const useStyles = makeStyles((theme) => ({
   },
   dataBox:{
       borderRadius: "20px",
-      boxShadow: "10px 20px 30px whitesmoke",
+      background: 'white',
       marginBottom: "50px",
       alignItems: "center"
   },
   divButton: {
-      backgroundColor: "#32e0c4",
-      marginRight: "20px",
-      color: "white",
-      borderRadius: "10px",
-      width: "100px"
+      color: "#32e0c4",
+      
   }
 }));
 
-export default function StepItem({ data}) {
+const StepItem = ({ data})  => {
     const classes = useStyles()
     const [open, setOpen] = useState(false)
     const [openEdit, setOpenEdit] = useState(false)
     const [openView, setOpenView] = useState(false)
     const [title, setTitle] = useState(data.title)
     const [desc, setDesc] = useState(data.desc)
-    const [link, setLink] = useState({})
     const [createdAt, setCreatedAt] = useState(data.createdAt)
     const [loading, setLoading] = useState(false);
-    const history = useHistory()
-    const mediaRef = storageRef.child(`/media/steps/${data.uniqueKey}/${data.link}`)
-  
+    
     const handleView = () => {
       setOpenView(true)
-      mediaRef.getDownloadURL().then(url => {
-        setLink(url)
-      })
+      
     }
 
     const handleViewClose = () => {
@@ -75,9 +67,9 @@ export default function StepItem({ data}) {
     }
 
   const handleDelete = (id) => {
-    db.collection('steps').doc(id).delete().then((data) => {
+    db.collection('stepData').doc(id).delete().then((data) => {
       return(
-        <Snackbar  ></Snackbar>
+        <Snackbar ></Snackbar>
       )
     })
 }
@@ -85,13 +77,13 @@ export default function StepItem({ data}) {
 const updateStep=(id) => {
     setLoading(true)
     const data = {title,desc}
-      db.collection('steps').doc(id).update(data).then(()=>{
+      db.collection('stepData').doc(id).update(data).then(()=>{
         setLoading(false)
       })
   }
     return (
         
-        <div>
+        <Container>
             <div className={classes.dataBox}>
             <Grid xs={12}>
                  <Typography align="center" variant="h4">{data.title}</Typography>
@@ -113,13 +105,13 @@ const updateStep=(id) => {
                 </Typography>
           </Grid>   
             </Grid>
-            <div >
-            <Button startIcon={<EditIcon/>} style={{marginRight: "20%", marginLeft: "20%"}} onClick={handleEdit} variant="contained" color="primary">Edit</Button>
-            <Button startIcon={<VisibilityIcon/>} style={{marginRight: "20%"}} 
+            <div style={{display: 'flex', justifyContent: 'space-evenly', width: '100%',}}>
+            <Button startIcon={<EditIcon/>}  onClick={handleEdit}  color="primary">Edit</Button>
+            <Button startIcon={<VisibilityIcon/>} 
             onClick={() =>
              {handleView()}} 
              className={classes.divButton}>View</Button>
-            <Button startIcon={<DeleteForeverIcon/>}  onClick={handleClickOpen} variant="contained" color="secondary">Delete</Button>
+            <Button startIcon={<DeleteForeverIcon/>}  onClick={handleClickOpen}  color="secondary">Delete</Button>
             </div>
               <Dialog
                     open={open}
@@ -184,15 +176,7 @@ const updateStep=(id) => {
                           id="desc"
                           multiline
                         />
-                        <TextField
-                        defaultValue={data.link}
-                        label="Media Name"
-                          variant="outlined"
-                          margin="normal"
-                          required
-                          fullWidth                         
-                          disabled
-                        />
+                       
                     <DialogActions>
                       <Button color="secondary" onClick={handleEditClose}>Cancel</Button>
                        {!loading && <Button
@@ -254,7 +238,7 @@ const updateStep=(id) => {
                         />
                         
                         
-                        <img height="400" width="500" src={link} alt="no data"/>
+                        <img height="400" width="500" src={data.url} alt="no data"/>
                       
                      
                     <DialogActions>
@@ -266,7 +250,8 @@ const updateStep=(id) => {
                 </Dialog>
             </div>
             
-        </div>
+        </Container>
     )
 }
 
+export default StepItem

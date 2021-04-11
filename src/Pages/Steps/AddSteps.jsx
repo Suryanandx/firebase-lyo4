@@ -1,12 +1,15 @@
 import { Box, Button, Card, Container, Grid, InputLabel, makeStyles, TextField, Typography } from '@material-ui/core'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom'
 import {useDropzone} from 'react-dropzone';
-import {db, storageRef} from '../../firebase'
+import {db, storage, storageRef} from '../../firebase'
 import { DropzoneArea } from 'material-ui-dropzone';
 import Alert from '@material-ui/lab/Alert';
 import { v4 as uuid } from 'uuid'
+import ManualDashboardLayout from '../../components/ManualSidebar/ManualDashboardLayout'
 import StepDashboardLayout from '../../components/StepSidebar/StepDashboardLayout';
+import { useStorage } from '../../utils/useStorage';
+import { firebaseLooper } from '../../utils/tools';
 const useStyles = makeStyles((theme) => ({
   paper: {
     
@@ -69,37 +72,54 @@ const useStyles = makeStyles((theme) => ({
 
 const AddSteps = ({match}) => {
 
+
   const [title, setTitle] = useState('')
   const [desc, setDesc] = useState('');
   const [createdAt, setCreatedAt] = useState('');
    const [uniqueKey, setUniqueKey] = useState(uuid());
-  const [cid, setCid] = useState(match.params.id)
+  const [manual_id, setCid] = useState(match.params.id)
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState('')
   const [media, setMedia] = useState({
-    mediaData: null ,
-    url: "",
+    mediaData: null
   })
+   const types = ["image/png", "image/jpeg", "image/jpg"];
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('')
-  
   const history = useHistory();
   const handleReturn = () => {
     history.go(-1)
   }
+  const [indexD, setIndex] = useState([])
+  useEffect(() => {
+    db.collection('stepData').where('manual_id', '==', `${match.params.id}`).onSnapshot(doc=>{
+      const data = firebaseLooper(doc)
+      setIndex(data)
+    })
+  }, [])
+  const handleChange = (loadedFiles) => {
+        let selectedFile = loadedFiles[0]
+
+        if (selectedFile) {
+            if (types.includes(selectedFile.type)) {
+                setError(null);
+                setFile(selectedFile);
+            } else {
+                setFile(null);
+                setError("Please select an image file (png or jpg)");
+            }
+        }
+       
+        
+    }
+    const { progress, url } = useStorage(file);
 
     const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(media)
-     storageRef
-     .child(`/media/steps/${uniqueKey}/${media.mediaData[0].name}`)
-     .put(media.mediaData[0]).snapshot.ref.getDownloadURL().then((durl) => {
-       setMedia({url: durl})
-       console.log(durl)
-     })
-  
-    const link = media.mediaData[0].name
-    const steps = {title, desc, createdAt, cid, link, uniqueKey };
+    const index = indexD.length
+    const steps = {title, desc, createdAt, manual_id, url, uniqueKey, index };
     setLoading(true);
-    db.collection('steps').add(steps).then(()=>{
+    db.collection('stepData').add(steps).then(()=>{
       setLoading(false)
       setMessage('Step Added successfully !')
       history.go(-1)
@@ -112,7 +132,7 @@ const AddSteps = ({match}) => {
   const classes= useStyles();
     return (
       <>
-      <StepDashboardLayout match={match}/>
+      <ManualDashboardLayout match={match}/>
         <div className={classes.wrapper}>
         <div className={classes.container}>
           <Card className={classes.content}>
@@ -145,7 +165,7 @@ const AddSteps = ({match}) => {
           >
             <TextField
               label="Content id"
-              value={cid}
+              value={manual_id}
               variant='outlined'
               margin='normal'
               fullWidth
@@ -207,13 +227,15 @@ const AddSteps = ({match}) => {
        <InputLabel variant="contained">Add Media</InputLabel>
        <DropzoneArea
        dropzoneClass={classes.drop}
-        acceptedFiles={['image/*', 'video/*', 'application/*']}
-       onChange={(files) => setMedia({mediaData: files})}
         showFileNames
+        onChange={(loadedFiles) => handleChange(loadedFiles)}
         dropzoneText="Drag and Drop / Click to ADD Media"
         showAlerts={false}
         filesLimit={1}
       />
+     
+     <h5>{progress}% Uploaded</h5>
+     
      </Grid>       
           </Grid>
    

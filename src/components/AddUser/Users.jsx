@@ -11,7 +11,7 @@ import LogIn from '../LogIn/LogIn';
 const useStyles = makeStyles((theme) =>( {
     add: {
      
-    background:'#141256',
+    background:'#ff7a00',
     borderRadius: '20px',
     margin: theme.spacing(3, 0, 2),
 
@@ -20,8 +20,7 @@ const useStyles = makeStyles((theme) =>( {
         backgroundColor: "#A997DF",
         color: "white",
         borderRadius: "20px",
-        marginRight: "30px",
-        marginLeft: "20px",
+       
     }
 }))
 const Users = () => {
@@ -49,9 +48,13 @@ const Users = () => {
     return (
         <>
         <Container xs={12}>
-             <Button startIcon={<ArrowBackIcon/>} className={classes.backButton}
-            onClick={handleReturn}
-            >Go back</Button>
+            
+              <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <div>
+                      <Typography variant='h1'><b>Users</b></Typography>
+              <Typography variant='h5'>List of available users</Typography>
+                  </div>
+         
         {error && <Typography variant="h6">{error}</Typography>}
        
            <Button 
@@ -62,6 +65,8 @@ const Users = () => {
                     Add user
                </Link>
                </Button>
+              </div>
+             <br/>
                
                <UserList users={users} /> 
                {isLoading && 

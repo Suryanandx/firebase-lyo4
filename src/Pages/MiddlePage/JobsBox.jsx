@@ -13,7 +13,9 @@ import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
 import WorkIcon from '@material-ui/icons/Work';
 import { useEffect, useState } from 'react';
 import { db } from '../../firebase';
-import { firebaseLooper } from '../../utils/tools';
+import { firebaseLooper } from '../../utils/tools'
+import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearIndeterminate from './LinearInderminate';
 
 const JobsBox = (props) =>{ 
     
@@ -76,9 +78,12 @@ const JobsBox = (props) =>{
           }}
         >
         Pending Jobs
+       
         </Typography>
-        
+      
+         
       </Box>
+      <LinearIndeterminate/>
     </CardContent>
   </Card>
 );

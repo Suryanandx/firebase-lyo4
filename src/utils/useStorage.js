@@ -12,7 +12,8 @@ export const useStorage = (file) => {
     useEffect(() => {
         if (file) {
             // storage ref
-            const storageRef = storage.ref(`users/${currentUser.email}/${file.name}`);            storageRef.put(file).on(
+            const storageRef = storage.ref(`users/${currentUser.email}/${file.name}`);        
+                storageRef.put(file).on(
                 "state_changed",
                 (snap) => {
                     // track the upload progress

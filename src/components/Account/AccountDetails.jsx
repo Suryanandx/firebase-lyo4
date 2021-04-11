@@ -117,6 +117,15 @@ const AccountDetails = () => {
   
     return (
         <Container maxWidth={false} style={{marginTop: '3%', marginBottom: '3%'}}>
+           <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                  <div>
+                      <Typography variant='h1'><b>Account Details</b></Typography>
+              <Typography variant='h5'>Edit the data you want! </Typography>
+                  </div>
+                  <hr/>
+                 
+         </div>
+          <br/>
             <Grid
             container
             spacing={3}

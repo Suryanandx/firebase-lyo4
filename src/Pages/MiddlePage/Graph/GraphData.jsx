@@ -49,7 +49,6 @@ const delayBetweenPoints = totalDuration / data.length;
           pressure.push(currPressure)
           delta.push(randomTemp)
           deltaP.push(randomPressure)
-         
           
       }
     }
@@ -60,7 +59,7 @@ const delayBetweenPoints = totalDuration / data.length;
   setDeltaP(deltaP)
   setDeltaTemp(delta)
 
-  },[])
+  },[data] )
 
   const dataTwo = {
   labels: timeData,
