@@ -1,3 +1,25 @@
+
+# install (Main folder)
+npm install  ==> to install all dependencies 
+
+npm start ==> to run the client 
+
+
+# Pending Build 
+ 1. Add Step Form (Responsiveness)
+ 2. Chart selector in dashboard
+ 3. Component color detailing
+ 4. Rest of Read only when implemented successfully in Test App 
+ 
+# Major Changes till 10/04/2021
+ 1. Static Chart data for Recipee
+ 2. Dashboard Redesign
+ 3. Pages Redesign 
+ 4. CRUD functions for - Manuals , Modules, Components , Steps 
+ 5. Read only Data => JobsData --Page
+ 6. Testing Components ==> Pages Working fine . 
+ 
+
 # Changes 26/03/2021
  1. Video call Feature implemented
  2. Video call design changed 
@@ -29,10 +51,5 @@
  4. Changed layout of Home Page
  
  
-
-# install (Main folder)
-npm i to install all dependencies 
-
-npm start to run the client 
 
     
