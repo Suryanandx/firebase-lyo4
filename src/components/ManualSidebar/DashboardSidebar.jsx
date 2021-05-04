@@ -110,14 +110,14 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
           
          
           {items.map((item) => (
-            <div key={item.title} className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
+            
               <NavItem
               href={`${item.href}/${match.params.id}/${item.title}`}
               key={item.title}
               title={item.title}
               icon={item.icon}
             />
-            </div>
+            
             
           ))}
         </List>

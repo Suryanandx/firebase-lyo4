@@ -51,7 +51,7 @@ import { Paper } from "@material-ui/core";
 function App() {
  
   return (
-    <Paper className='bg-grey-100'>
+    <>
    
       <GlobalStyles/>
     <AuthProvider>
@@ -103,7 +103,7 @@ function App() {
     </Page>
     </AuthProvider>
     
-    </Paper>
+    </>
     
   );
 }

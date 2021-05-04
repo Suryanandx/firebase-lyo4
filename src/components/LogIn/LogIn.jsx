@@ -108,7 +108,7 @@ export default function LogIn() {
                         
                         <input required onChange={(e) => setEmail(e.target.value)} type="email" id="email" placeholder="Email*" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
                     </div>
-    
+   
                     <div className="flex flex-col pt-4">
                         
                         <input required onChange={(e) => setPassword(e.target.value)} type="password" id="password" placeholder="Password*" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
