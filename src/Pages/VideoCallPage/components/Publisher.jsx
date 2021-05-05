@@ -3,6 +3,7 @@ import { OTPublisher } from 'opentok-react';
 import CheckBox from './CheckBox';
 import '../OpenTok.css'
 import { Button, Card, Container, Grid } from '@material-ui/core';
+import screenfull from 'screenfull';
 
 class Publisher extends React.Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class Publisher extends React.Component {
     }));
   };
 
+ 
 
   render() {
     
@@ -75,13 +77,14 @@ class Publisher extends React.Component {
         spacing={3}
         >
           <Grid
-          
+          id='publisher'
            item
             lg={4}
             sm={6}
             xl={3}
             xs={12}>
             <OTPublisher
+           
           properties={{
             width:500, height:300,
             publishAudio: this.state.audio,
@@ -131,7 +134,9 @@ class Publisher extends React.Component {
           onChange={this.setVideo}
         />
         </div>
-
+        <div>
+         
+        </div>
         
         </Card>
         

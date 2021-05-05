@@ -5,6 +5,7 @@ import ConnectionStatus from './components/ConnectionStatus';
 import Publisher from './components/Publisher';
 import Subscriber from './components/Subscriber';
 import { Container, Grid } from '@material-ui/core';
+import Chatbox from './components/Chatbox';
 
 class OpenTokPage extends React.Component {
   constructor(props) {
@@ -29,8 +30,9 @@ class OpenTokPage extends React.Component {
 
   render() {
     return (
-      <Container>
-             <OTSession
+      <Container style={{display: 'flex'}}>
+        <div>
+            <OTSession
         apiKey={this.props.apiKey}
         sessionId={this.props.sessionId}
         token={this.props.token}
@@ -64,22 +66,16 @@ class OpenTokPage extends React.Component {
         
         >
           <h4 style={{width: '200px'}}><b>Connected Users</b></h4>
-      <Grid
-      item
-            lg={4}
-            sm={6}
-            xl={3}
-            xs={12}>
-
+      
          <OTStreams>
           <Subscriber />
         </OTStreams>
-      </Grid>
+     
         </Grid>
-      
-       
-
       </OTSession>
+        </div>
+         
+     
       </Container>
    
     );

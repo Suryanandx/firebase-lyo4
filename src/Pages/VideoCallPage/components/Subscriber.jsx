@@ -2,8 +2,11 @@ import React from 'react';
 import '../OpenTok.css'
 import { OTSubscriber } from 'opentok-react';
 import CheckBox from './CheckBox';
-import { Card, Container, Grid } from '@material-ui/core';
-
+import { Button, Card, Container, Dialog, Grid } from '@material-ui/core';
+import screenfull from 'screenfull';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 class Subscriber extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +14,8 @@ class Subscriber extends React.Component {
     this.state = {
       error: null,
       audio: true,
-      video: true
+      video: true,
+      open: false
     };
   }
 
@@ -27,11 +31,18 @@ class Subscriber extends React.Component {
     this.setState({ error: `Failed to subscribe: ${err.message}` });
   }
 
+  handleMode = () => {
+    this.setState({open: true})
+  }
+  handleClose = () => {
+    this.setState({open: false})
+  }
+  
   render() {
     return (
       <Container>
         
-         <Grid container spacing={3}>
+         
        
         <Grid 
         item
@@ -39,17 +50,21 @@ class Subscriber extends React.Component {
             sm={6}
             xl={3}
             xs={12}
-        >
+       >
+         
           <OTSubscriber
           properties={
             {
-              width: 500, height:350,
+              width: 400, height:250,
             subscribeToAudio: this.state.audio,
-            subscribeToVideo: this.state.video
+            subscribeToVideo: this.state.video,
+            showControls: true
           }}
           onError={this.onError}
         />
-        
+         
+         
+       
       <Card style={{width:'500px', display: 'flex', justifyContent: 'space-between'}}>
         <div>
             <CheckBox
@@ -65,11 +80,32 @@ class Subscriber extends React.Component {
           onChange={this.setVideo}
         />
           </div>
+          <div>
+            <Button onClick={this.handleMode}>Change Mode</Button>
+          </div>
         </Card>
-        
+        <Dialog
+        fullScreen open={this.state.open} onClose={this.handleClose}
+        >
+          <Toolbar>
+             <IconButton edge="start" color="inherit" onClick={this.handleClose} aria-label="close">
+              <CloseIcon />
+            </IconButton>
+          </Toolbar>
+           
+            <OTSubscriber
+          properties={
+            {
+              width: 1080, height:726,
+            subscribeToAudio: this.state.audio,
+            subscribeToVideo: this.state.video
+          }}
+          onError={this.onError}
+        />
+        </Dialog>
       </Grid>
       
-        </Grid>
+        
         
       <div>
          {this.state.error ? <div id="error">{this.state.error}</div> : null}
