@@ -9,7 +9,7 @@ import DashboardSidebar from './DashboardSidebar';
 
 const useStyles = makeStyles((theme) => ({
   layoutRoot: {
-    backgroundColor: 'grey',
+   backgroundColor: 'whitesmoke',
     display: 'flex',
     height: '100%',
     overflow: 'hidden',

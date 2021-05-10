@@ -52,18 +52,40 @@ class Subscriber extends React.Component {
             xs={12}
        >
          
-          <OTSubscriber
+          {
+            this.state.open?
+            <Dialog
+        fullScreen open={this.state.open} onClose={this.handleClose}
+        >
+          <Toolbar>
+             <IconButton edge="start" color="inherit" onClick={this.handleClose} aria-label="close">
+              <CloseIcon />
+            </IconButton>
+          </Toolbar>
+           
+            <OTSubscriber
           properties={
             {
-              width: 400, height:250,
+              width: 1080, height:726,
+            subscribeToAudio: this.state.audio,
+            subscribeToVideo: this.state.video
+          }}
+          onError={this.onError}
+        />
+        </Dialog>
+        :
+         <OTSubscriber
+          properties={
+            {
+              width: 600, height:350,
             subscribeToAudio: this.state.audio,
             subscribeToVideo: this.state.video,
             showControls: true
           }}
           onError={this.onError}
         />
-         
-         
+
+         }
        
       <Card style={{width:'500px', display: 'flex', justifyContent: 'space-between'}}>
         <div>
@@ -84,25 +106,7 @@ class Subscriber extends React.Component {
             <Button onClick={this.handleMode}>Change Mode</Button>
           </div>
         </Card>
-        <Dialog
-        fullScreen open={this.state.open} onClose={this.handleClose}
-        >
-          <Toolbar>
-             <IconButton edge="start" color="inherit" onClick={this.handleClose} aria-label="close">
-              <CloseIcon />
-            </IconButton>
-          </Toolbar>
-           
-            <OTSubscriber
-          properties={
-            {
-              width: 1080, height:726,
-            subscribeToAudio: this.state.audio,
-            subscribeToVideo: this.state.video
-          }}
-          onError={this.onError}
-        />
-        </Dialog>
+        
       </Grid>
       
         

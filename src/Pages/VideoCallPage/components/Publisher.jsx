@@ -8,14 +8,14 @@ import screenfull from 'screenfull';
 class Publisher extends React.Component {
   constructor(props) {
     super(props);
-    
+   
     this.state = {
        publishScreen: false,
       error: null,
       audio: true,
       video: true,
       videoSource: 'camera',
-     audioSource: 0
+     showControls: true
       
     };
 
@@ -90,7 +90,8 @@ class Publisher extends React.Component {
             publishAudio: this.state.audio,
             publishVideo: this.state.video,
             videoSource: this.state.videoSource === 'screen' ? 'screen' : undefined,
-            showControls: true
+            showControls: this.state.showControls,
+            
           }}
           onError={this.onError}
         />

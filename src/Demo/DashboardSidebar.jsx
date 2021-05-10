@@ -23,14 +23,15 @@ import {
   Users as UsersIcon,
   PhoneCall as PhoneIcon,
   Video as VideoIcon,
-  LogOut as LogOutIcon
+  LogOut as LogOutIcon,
+  Book as Book
 } from 'react-feather';
 import VideoCallIcon from '@material-ui/icons/VideoCall'
 import NavItem from './NavItem';
 import { useAuth } from '../components/context/AuthContext';
 import { db } from '../firebase';
 import { firebaseLooper } from '../utils/tools';
-
+import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 
 
 const items = [
@@ -45,6 +46,11 @@ const items = [
     href: '/video-call',
     icon: VideoIcon,
     title: 'Video Call'
+  },
+  {
+    href: '/file-manager',
+    icon: Book,
+    title: 'Files'
   },
  
 
@@ -66,6 +72,11 @@ const itemSecond = [
     icon: SettingsIcon,
     title: 'Settings'
   },
+  {
+    href: '/user-manual',
+    icon: ListAltOutlinedIcon,
+    title: 'User Manual'
+  }
 ]
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {

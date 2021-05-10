@@ -96,7 +96,7 @@ export default function BatchInfo({match}) {
             <TableCell style={{backgroundColor: '#d8e3e7'}} align="left"><b>User</b></TableCell>
             <TableCell style={{backgroundColor: '#d8e3e7'}} align="left"><b>Date & Time</b></TableCell>
             <TableCell style={{backgroundColor: '#d8e3e7'}} align="left"><b>Image</b></TableCell>
-           
+          
           </TableRow>
         </TableHead>
         <TableBody>

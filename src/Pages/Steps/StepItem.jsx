@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     borderBottomColor: "black",
     backgroundColor: 'white',
-   
+  
   },
   statsItem: {
     alignItems: 'center',
@@ -204,26 +204,7 @@ const updateStep=(id) => {
         <Container>
             <div className={classes.dataBox}>
             <Grid xs={12}>
-                 {/* <Typography align="center" variant="h4">{data.title}</Typography>
-                 <Typography align="center" variant="body2">{data.desc}</Typography> 
-                 <Grid
-                className={classes.statsItem}
-                item
-                 >
-                <AccessTimeIcon
-                className={classes.statsIcon}
-                color="action"
-                />
-                <Typography
-                color="textSecondary"
-                display="inline"
-                variant="body2"
-                >
-              {data.type}
-                </Typography>
-
-    
-          </Grid>    */}
+                
          <section class="text-gray-600 body-font">
   <div class="container  mx-auto flex flex-wrap">
     <div class="flex relative pt-10 pb-20 sm:items-center md:w-2/3 mx-auto">
@@ -248,14 +229,7 @@ const updateStep=(id) => {
   </div>
 </section>
             </Grid>
-            {/* <div style={{display: 'flex', justifyContent: 'space-between', width: '100%',}}>
-            <Button startIcon={<EditIcon/>}  onClick={handleEdit}  color="primary">Edit</Button>
-            <Button startIcon={<VisibilityIcon/>} 
-            onClick={() =>
-             {handleView()}} 
-             className={classes.divButton}>View</Button>
-            <Button startIcon={<DeleteForeverIcon/>}  onClick={handleClickOpen}  color="secondary">Delete</Button>
-            </div> */}
+           
               <Dialog
                     open={open}
                     onClose={handleClose}
@@ -424,6 +398,7 @@ const updateStep=(id) => {
                         {getMedia()}
                     <DialogActions>
                       <Button color="secondary" onClick={handleViewClose}>Cancel</Button>
+                      <Button>Next </Button>
                     </DialogActions>
                      
                   </form>

@@ -55,7 +55,7 @@ const Machines = () => {
                    </div>
                <Button href={`/add-machine`}  style={{width: '15%', marginLeft: '4%', marginRight: '3%',color: 'white', backgroundColor: 'orange'}}>Add Machine</Button>
              
-                
+               
                
             </div>
                    

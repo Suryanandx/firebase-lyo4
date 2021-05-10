@@ -121,8 +121,8 @@ const updateUser=(id) => {
            
          
 
-            
-                <div style={{display: 'flex', width: '35%', marginRight: '2%'}}>
+            <Card style={{display: 'flex',width: '45%', marginRight: '4%', marginBottom: '2%', justifyContent:'space-between', padding: '2%'}}>
+                <div style={{display: 'flex', width: '45%', marginRight: '2%'}}>
                     <Avatar src={users.url} className={classes.large}/>
                     <div  >
                       
@@ -142,17 +142,15 @@ const updateUser=(id) => {
                     </div>
                     
                 </div>
-                            <div style={{display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', marginRight: '5%', marginBottom: '8%'}}>
+                            <div style={{display: 'flex', justifyContent: 'flex-end', marginRight: '2%', padding: '2%', marginLeft: '2%'}}>
                                       <Button style={{opacity: 0.5}} startIcon={<EditIcon/>}  onClick={handleEdit}  ></Button>
                                       {/* <Button style={{opacity: 0.5}} startIcon={<VisibilityIcon/>} onClick={handleView}></Button> */}
 
                                       <Button style={{opacity: 0.5}} startIcon={<DeleteForeverIcon/>} onClick={handleClickOpen}  ></Button>
+                                     
                                       </div>
-                                
-
-       
-    
-    
+                                      
+                                     </Card>
               <Dialog
                     open={open}
                     onClose={handleClose}

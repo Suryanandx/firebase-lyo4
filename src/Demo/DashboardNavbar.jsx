@@ -8,6 +8,7 @@ import {
   Badge,
   Box,
   Button,
+  Drawer,
   Hidden,
   IconButton,
   Menu,
@@ -234,7 +235,8 @@ const DashboardNavbar = ({avatar, onMobileNavOpen, ...rest }) => {
       }
          <Button  onClick={handleVideoClose} color='secondary'>Close</Button>
       </Menu>
-      
+    
+
     </>
    
   );

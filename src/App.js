@@ -47,6 +47,11 @@ import Settings from "./Pages/settings/Settings";
 import OpenTokPage from "./Pages/VideoCallPage/OpenTokPage";
 import RenderCall from "./Pages/VideoCallPage/RenderCall";
 import { Paper } from "@material-ui/core";
+import NewVideoCall from "./components/VideoCall/NewVideoCall";
+import FileManagerView from "./Pages/FileManager/FileManagerView";
+import AddFiles from "./Pages/FileManager/AddFiles";
+import UserManual from "./Pages/user_manual/UserManual";
+import WorkFlow from "./Pages/MiddlePage/WorkFlow";
 
 function App() {
  
@@ -93,7 +98,9 @@ function App() {
           <AppRoute path="/video-call" exact component={RenderVc} layout={DashboardLayout} />
           <AppRoute path="/video-call/:id" exact component={RenderVc} layout={DashboardLayout} />
            <AppRoute path="/machine-data/DQ-Reports/:id/DQ-Reports" exact component={DQReport} layout={MainLayout} />
-          <AppRoute path="/test" exact component={Tests}  layout={MainLayout}/>
+          <AppRoute path="/Add-files" exact component={AddFiles}  layout={DashboardLayout}/>
+          <AppRoute path="/file-manager" exact component={FileManagerView}  layout={DashboardLayout}/>
+          <AppRoute path="/user-manual" exact component={WorkFlow}  layout={DashboardLayout}/>
 
       </Switch>
     </Router>
