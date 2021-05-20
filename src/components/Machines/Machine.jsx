@@ -58,7 +58,7 @@ const Machine= ({data, ...rest}) => {
   const [loading, setLoading] = useState(false);  
   const [desc, setDesc] = useState(data.desc)
   
-  
+ 
       const handleClickOpen = () => {
     setOpen(true);
   };

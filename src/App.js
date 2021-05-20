@@ -102,7 +102,7 @@ function App() {
         <AppRoute path="/Add-files" exact component={AddFiles}  layout={DashboardLayout}/>
         <AppRoute path="/file-manager" exact component={FileManagerView}  layout={DashboardLayout}/>
         <AppRoute path="/user-manual" exact component={WorkFlow}  layout={DashboardLayout}/>
-        <Route path='/whiteboard' exact component={Whiteboard} layout={MainLayout}/>
+        <Route path='/whiteboard' exact component={Whiteboard} layout={MainLayout}/>o
       </Switch>
     </Router>
     </BrowserRouter>
