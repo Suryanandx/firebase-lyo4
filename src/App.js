@@ -100,12 +100,12 @@ function App() {
         {/*/machine-data/Reports/BXLmS3MAwjf25qEdubL6/Recipes*/}
          <AppRoute path="/machine-data/Manuals/:id/Manuals" exact component={Manuals} layout={MainLayout} />
         <AppRoute path="/video-call" exact component={EntryPage} layout={DashboardLayout} />
-        <Route path="/video-call/:id" exact component={RenderVc} layout={MainLayout} />
+        <Route path="/video-call/:id" exact component={EntryPage} layout={MainLayout} />
           <AppRoute path="/machine-data/DQ-Reports/:id/DQ-Reports" exact component={DQReport} layout={MainLayout} />
           <AppRoute path="/Manuals/:id/3D-Model" exact component={ModelThreeD} layout={MainLayout}/>
         <AppRoute path="/Add-files" exact component={AddFiles}  layout={DashboardLayout}/>
         <AppRoute path="/file-manager" exact component={FileManagerView}  layout={DashboardLayout}/>
-        <AppRoute path="/user-manual" exact component={WorkFlow}  layout={DashboardLayout}/>
+        <AppRoute path="/user-manual" exact component={UserManual}  layout={DashboardLayout}/>
         <Route path='/whiteboard' exact component={Whiteboard} layout={MainLayout}/>
          <Route path='/test' exact component={ModelThreeD} />
       </Switch>
@@ -114,7 +114,7 @@ function App() {
     </ThemeProvider>
     </Page>
     </AuthProvider>
- 
+
     </>
     
   );

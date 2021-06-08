@@ -7,6 +7,7 @@ const InviteForm = () => {
     const [disabled, setDisabled] = useState(false)
 
      function sendEmail(e) {
+         
     e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
         emailjs.send("gmail","template_3a12ff8",{
         to_name: `${toEmail}` ,
@@ -17,6 +18,7 @@ const InviteForm = () => {
         }, "user_gqmHsTLEHxh06fhWlDnqq").then(() => {
             setMessage('Invited Successfully')
             setDisabled(true)
+            setToEmail('')
         })
    
   }

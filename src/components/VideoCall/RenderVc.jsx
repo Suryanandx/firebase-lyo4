@@ -60,6 +60,7 @@ const drawerWidth = 550;
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    background: 'black',
     display: 'flex',
   },
   appBar: {
@@ -241,8 +242,8 @@ export default function RenderVc({config}) {
        <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
-        style={{top: 64, background: 'white'}}
+        position="absolute"
+        style={{top: 64, background: 'black'}}
         className={clsx(classes.appBar, {
           [classes.appBarShift]: openDrawer,
         })}
@@ -252,7 +253,10 @@ export default function RenderVc({config}) {
            
           </Typography>
           <IconButton href="/">
-            <Button style={{color: 'red'}}>Disconnect</Button>
+            <Button style={{background: 'red', color: 'white'}}>Disconnect</Button>
+          </IconButton>
+          <IconButton target="_blank"  href="/machine-data">
+            <Button style={{background: 'blue', color: 'white'}}>Machines</Button>
           </IconButton>
           <IconButton style={{color: 'orange'}} onClick={openInviteBox}>
             <AddIcon/>

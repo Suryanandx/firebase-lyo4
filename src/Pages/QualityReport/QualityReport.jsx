@@ -20,7 +20,7 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { CSVLink } from "react-csv";
 import { firebaseLooper } from '../../utils/tools';
 import DashboardNavbar from './DashboardNavbar'
-import { Button, Card, TableHead, Typography } from '@material-ui/core';
+import { Button, ButtonBase, Card, Dialog, TableHead, Toolbar, Typography } from '@material-ui/core';
 import DoneAllIcon from '@material-ui/icons/DoneAll';
 import ClearIcon from '@material-ui/icons/Clear';
 import BugReportIcon from '@material-ui/icons/BugReport';
@@ -151,6 +151,8 @@ export default function QualityReport({match}) {
   const [mTitle, setMTitle] = useState('')
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [issuecomment, setIssueComment] = useState('')
+  const [open, setOpen] = useState(false)
     const [dq, setDq] = useState([])
     useEffect(() => {
        db.collection('DQReport')
@@ -217,7 +219,21 @@ function printDocument() {
         pdf.save("dqReportx.pdf");  
       });  
   }
+  function handleComment(id){
+   
+    db.collection('issueData').doc(id).onSnapshot(snapshot => {
+     const data = snapshot.data()
+     setIssueComment(data.content )
+    })
 
+}
+
+function handleOpen(){
+  setOpen(true)
+}
+function handleClose(){
+  setOpen(false)
+}
   return (
  <Page title='Quality Report | LyoIms'>
 
@@ -286,6 +302,12 @@ function printDocument() {
               <TableCell style={{ width: 160 }} align="right">
                 {responseform(row.response)}
               </TableCell>
+               <TableCell style={{ width: 160 }} align="right">
+                {row.issue_id != ""? <button onClick={(e) => {
+                  handleOpen(e);
+                  handleComment(row.issue_id)
+                }}>Check</button> : <p>N/A</p>}
+              </TableCell>
             </TableRow>
           ))}
 
@@ -298,7 +320,7 @@ function printDocument() {
       </Table>
     </TableContainer>
       <TableFooter>
-         
+        
            
           <TableRow >
             
@@ -321,8 +343,15 @@ function printDocument() {
           </Card>
         </div>
       </div>
-    
+    <Dialog fullWidth onClose={handleClose} open={open}>
+      <Toolbar>
+        <Button onClick={handleClose}>Close</Button>
+      </Toolbar>
+              <b className='text-xl underline text-bold text-center mb-3'>Comment</b>
+              <p className='text-xl text-blue-gray-500 text-center'>{issuecomment}</p>
+    </Dialog>
     </>
     </Page>
   );
 }
+

@@ -45,23 +45,17 @@ const AddMachines = () => {
   const link = 'machine-data'
   const history = useHistory();
   const [notifyData, setNotifyData] = useState([])
-  useEffect(() => {
-    db.collection('notifications').onSnapshot(doc => {
-      const data = firebaseLooper(doc)
-      setNotifyData(data)
-    })
-  })
+ 
     const handleSubmit = (e) => {
-     
+   
     e.preventDefault();
     var result = {title,location,createdBy,desc }
         db.collection('machineData').add(result).then(data => {
           history.push('/machine-data')
           console.log(data)
+          setLoading(true)
         })
-        const index = notifyData.length
-        var notify = {notification, link, index}
-        db.collection('notifications').add(notify)
+       
     }
 
 
@@ -75,7 +69,7 @@ const AddMachines = () => {
             <Typography component="h1" variant="h4">
           Add Machine
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} >
           <Card >
             <CardContent>
 
@@ -120,7 +114,7 @@ const AddMachines = () => {
            value={desc}
            variant="outlined"
             id="desc"
-            label="Dsecription"
+            label="Description"
             type="text"
             multiline
             rows={7}
@@ -130,7 +124,7 @@ const AddMachines = () => {
           
          {!loading && <Button
             type="submit"
-            
+            onClick={handleSubmit}
             variant="contained"
             
             className={classes.submit}

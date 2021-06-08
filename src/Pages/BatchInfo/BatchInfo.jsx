@@ -94,10 +94,10 @@ export default function BatchInfo({match}) {
         <TableHead>
           <TableRow>
             <TableCell style={{backgroundColor: '#d8e3e7'}}><b>Manual</b></TableCell>
-            <TableCell style={{backgroundColor: '#d8e3e7'}} align="left"><b>User</b></TableCell>
-            <TableCell style={{backgroundColor: '#d8e3e7'}} align="left"><b>Date & Time</b></TableCell>
-            <TableCell style={{backgroundColor: '#d8e3e7'}} align="left"><b>Image</b></TableCell>
-          
+            <TableCell style={{backgroundColor: '#d8e3e7'}} align="center"><b>User</b></TableCell>
+            <TableCell style={{backgroundColor: '#d8e3e7'}} align="center"><b>Date & Time</b></TableCell>
+            <TableCell style={{backgroundColor: '#d8e3e7'}} align="center"><b>Image</b></TableCell>
+         
           </TableRow>
         </TableHead>
         <TableBody>
@@ -117,9 +117,9 @@ export default function BatchInfo({match}) {
               <TableCell style={{backgroundColor: 'whitesmoke'}} component="th" scope="row">
                 {row.manual_name}
               </TableCell>
-              <TableCell align="left">{row.user_id}</TableCell>
-              <TableCell align="left">{row.time}</TableCell>
-              <TableCell align="right"><img src={row.url} width={450} height={250}/></TableCell>
+              <TableCell align="center">{row.user_id}</TableCell>
+              <TableCell align="center">{row.time}</TableCell>
+              <TableCell align="center"><img loading="lazy" src={row.url} width={450} height={250}/></TableCell>
               
             </TableRow>
           ))}

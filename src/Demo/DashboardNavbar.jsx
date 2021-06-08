@@ -61,7 +61,7 @@ const DashboardNavbar = ({avatar, onMobileNavOpen, ...rest }) => {
     }else {
        <Redirect to='/login'/>
     }
-      
+     
     
     if(currentUser){
        db.collection('notifications').orderBy('index', 'desc').onSnapshot(doc => {

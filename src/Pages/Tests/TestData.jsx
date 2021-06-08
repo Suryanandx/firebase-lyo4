@@ -23,7 +23,7 @@ const TestData = ({reid, data}) => {
 const totalDuration = 10000;
 const delayBetweenPoints = totalDuration / data.length;
 
-  
+ 
   useEffect(() => {
     db.collection('realtimeData').where('recipe_id','==', `${reid}`).onSnapshot(doc => {
       const data = firebaseLooper(doc)

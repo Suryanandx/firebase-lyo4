@@ -1,5 +1,5 @@
 import { Button, Dialog, FormHelperText, Select, TextField, Toolbar } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Page from "../components/Page";
 import RenderVc from "../components/VideoCall/RenderVc";
 import { db } from "../firebase";
@@ -9,11 +9,16 @@ function EntryPage() {
     const [open, setOpen] = useState(false)
     const [mode, setMode] = useState('relayed')
     const [configData, setConfigData] = useState({
-        api_key: '47236004',
-        session_id: '2_MX40NzIzNjAwNH5-MTYyMTY2ODExMDQ0Mn5GTFZuM2xUY0cySXNXcE9NbTkrZ0M1ck5-UH4',
-        token: 'T1==cGFydG5lcl9pZD00NzIzNjAwNCZzaWc9OWI3YTg1ZWU3YTk0NzhjZGIwZDI4MTA2YmZhMGQ1ZjQ1NGUyNDM5NzpzZXNzaW9uX2lkPTJfTVg0ME56SXpOakF3Tkg1LU1UWXlNVFkyT0RFeE1EUTBNbjVHVEZadU0yeFVZMGN5U1hOWGNFOU5iVGtyWjBNMWNrNS1VSDQmY3JlYXRlX3RpbWU9MTYyMTY2ODExNyZub25jZT0wLjAzODM5NDU3NzY3NzA2NCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNjI0MjYwMTE5JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9'
+        api_key: '47244624',
+        session_id: '2_MX40NzI0NDYyNH5-MTYyMjYyNDk5NTkzNX5IdmpYQkhkc214N0J6cXYvdnR4YjFDeFp-UH4',
+        token: 'T1==cGFydG5lcl9pZD00NzI0NDYyNCZzaWc9ZDhhNmRkZDliOThiMTQ0MDVjMTVmNWI3YjA2M2UzMDMzNzRlZGFiYjpzZXNzaW9uX2lkPTJfTVg0ME56STBORFl5Tkg1LU1UWXlNall5TkRrNU5Ua3pOWDVJZG1wWVFraGtjMjE0TjBKNmNYWXZkblI0WWpGRGVGcC1VSDQmY3JlYXRlX3RpbWU9MTYyMjYyNTAwNCZub25jZT0wLjE2NTgxNDE4MDAyMDMwNTI0JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE2MjUyMTcwMDQmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0='
     })
-
+    useEffect(() => {
+       db.collection('OpenTokConfig').doc('relayed').onSnapshot(snapshot => {
+            setConfigData(snapshot.data())
+            console.log(snapshot.data())
+        })
+    }, [])
     const handleOpen = () => {
         setOpen(true)
     }
@@ -22,10 +27,7 @@ function EntryPage() {
     }
 
     function handleChange() {
-        db.collection('OpenTokConfig').doc(mode).onSnapshot(snapshot => {
-            setConfigData(snapshot.data())
-            console.log(snapshot.data())
-        })
+      
     }
     return (
       <Page title='Video Call | LyoIms'>
@@ -37,12 +39,12 @@ function EntryPage() {
                 <h2 className="mb-8 text-xs font-semibold tracking-widest text-black uppercase title-font"> VIDEO CALL</h2>
                 <h1 className="mb-8 text-2xl font-black tracking-tighter text-black md:text-5xl title-font"> Join or Create a new Session</h1>
                 <p className="mb-8 text-base leading-relaxed text-left text-blueGray-600 "> Join Meetings with end users and more. </p>
-                <Select onChange={(e) => setMode(e.target.value)} fullWidth variant='outlined'>
+                {/* <Select onChange={(e) => setMode(e.target.value)} fullWidth variant='outlined'>
                     <option value="relayed">Relayed</option>
                      <option value="routed">Routed</option>
-                </Select>
-                <FormHelperText>Select the mode to be used</FormHelperText>
-                <Button onClick={handleChange}>Set mode</Button>
+                </Select> */}
+                {/* <FormHelperText>Select the mode to be used</FormHelperText>
+                <Button onClick={handleChange}>Set mode</Button> */}
                 <br />
                {configData &&  <h6>{configData.session_id}</h6>}
                 <div className="flex flex-col justify-evenly lg:flex-row">
@@ -55,9 +57,9 @@ function EntryPage() {
               </div>
             </div>
           </section>
-        <Dialog open={open} fullScreen>
-            <Toolbar>
-                <Button onClick={(e) => handleClose()}>Close</Button>
+        <Dialog style={{background: 'black'}} open={open} fullScreen>
+            <Toolbar style={{background: 'black'}}>
+                <button className='text-lg bg-yellow-800 w-40 text-gray-100 hover:bg-yellow-600' onClick={(e) => handleClose()}>Close</button>
             </Toolbar>
             <RenderVc config={configData}/>
         </Dialog>

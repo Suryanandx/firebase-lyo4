@@ -182,7 +182,8 @@ const ContentsData = ({match}) => {
               </div>
               <Button style={{width: '15%',marginLeft: '4%', marginRight: '3%', backgroundColor: 'orange', color: 'white'}} href={`/machine-data/${match.params.id}/Add-module`}>ADD New </Button>
               </div>
-              <hr/>
+              
+              <br />
               <Grid  className='bg-gray-100' container spacing={3}>
                 {(
              content
@@ -208,7 +209,7 @@ const ContentsData = ({match}) => {
          
       </Paper>
       </Page>
-      
+     
      
     )
 }

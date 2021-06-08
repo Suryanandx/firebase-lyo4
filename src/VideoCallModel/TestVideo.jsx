@@ -7,12 +7,12 @@ import Publisher from '../Pages/VideoCallPage/components/Publisher.jsx';
 function TestVideo({config}) {
     return (
       <Page title='Video Call | LyoIms'>
-        
-        <div style={{backgroundColor: '#E0E0E0'}}>
+       
+        <div style={{background: 'black', height: '200vh'}}>
             
         <OTSession apiKey={config.api_key} sessionId={config.session_id} token={config.token}>
-        <Publisher/>
-        <OTStreams>
+          <Publisher/>
+          <OTStreams>
           <OTSubscriber
           
           properties={{
@@ -21,7 +21,11 @@ function TestVideo({config}) {
               width:500, height: 270
           }}
           />
+          
         </OTStreams>
+          
+          
+      
       </OTSession>
         </div>
       </Page>
