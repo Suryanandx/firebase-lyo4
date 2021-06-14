@@ -39,7 +39,7 @@ const UsersBox = (props) =>{
             variant="h4"
           >
             <b>
-              TOTAL USERS
+              USERS
             </b>
             
           </Typography>

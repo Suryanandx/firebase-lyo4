@@ -40,9 +40,9 @@ const MachineBox = (props) =>{
             variant="h4"
           >
             <b>
-              TOTAL MACHINES
+               MACHINES
             </b>
-              
+             
           </Typography>
           
         </Grid>

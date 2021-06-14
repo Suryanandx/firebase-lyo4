@@ -57,7 +57,7 @@ const JobsBox = (props) =>{
             variant="h4"
           >
             <b>
-               TOTAL JOBS
+                JOBS
             </b>
            
           </Typography>

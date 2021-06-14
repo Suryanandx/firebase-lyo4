@@ -9,11 +9,13 @@ function TestVideo({config}) {
       <Page title='Video Call | LyoIms'>
        
         <div style={{background: 'black', height: '200vh'}}>
-            
+           
         <OTSession apiKey={config.api_key} sessionId={config.session_id} token={config.token}>
-          <Publisher/>
+         
+         <div style={{width: '80%', marginRight: '2%'}}>
           <OTStreams>
-          <OTSubscriber
+            
+              <OTSubscriber
           
           properties={{
               showControls: true,
@@ -21,10 +23,14 @@ function TestVideo({config}) {
               width:500, height: 270
           }}
           />
+           
+          
           
         </OTStreams>
-          
-          
+           </div>
+           <div>
+             <Publisher/>
+          </div>
       
       </OTSession>
         </div>

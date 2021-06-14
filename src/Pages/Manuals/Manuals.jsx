@@ -96,6 +96,7 @@ export default function Manuals({match}) {
                              else if (data.desc.toLowerCase().includes(title.toLocaleLowerCase())){
                                return data
                              }
+                             return data 
                             })
                         .map((data) => (
                           <ManualItem key={data.id} data={data}/>

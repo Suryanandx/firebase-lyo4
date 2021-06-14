@@ -52,7 +52,7 @@ const ManualBox = (props) =>{
             variant="h4"
           >
             <b>
-               TOTAL MANUALS
+                MANUALS
             </b>
            
           </Typography>

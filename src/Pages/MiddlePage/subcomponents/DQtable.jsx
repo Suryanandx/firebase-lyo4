@@ -45,41 +45,22 @@ export default function DQtable() {
   const classes = useStyles();
   const [recipeeData, setRecipeeData] = useState([])
   const [open, setOpen] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [title, setTitle] = useState('')
+
+  const [title, setTitle] = useState("")
   
   
-  const [batch, setBatch] = useState([])
+  
   useEffect(() => {
      
     db.collection('DQReport').onSnapshot(doc => {
       const data = firebaseLooper(doc)
-       data.sort(function(a,b) {
-                return(a.index-b.index)
-            })
+      console.log(data)
       setRecipeeData(data)
     })
     
   }, [])
     
-  const handleOpen = () => {
-    setOpen(true)
-  }
 
-  const handleClose = () => {
-    setOpen(false)
-  }
-
-function getMachineName (mid){
-    var name ;
-    db.collection('machineData').doc(mid).onSnapshot(doc => {
-        const data = doc.data()
-        
-        name = data.title
-        
-    })
-   return name
-}
 
 
   return (
@@ -87,21 +68,22 @@ function getMachineName (mid){
       <div >
         <div >
           <Card className={classes.content}>
-            
+            <h1>{title}</h1>
                <TableContainer component={Paper}>
       <Table aria-label="simple table">
          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                
                  <div className="relative"> 
                  
-                 <input style={{ border: '2px solid whitesmoke'}} onChange={(e) => setTitle(e.target.value)} type="text" className="h-14 w-auto pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search here..."/>
+                  {/* <input style={{ border: '2px solid whitesmoke'}} onChange={(e) => setTitle(e.target.value)} type="text" className="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search..."/> */}
                 
               </div>
               </div>
         <TableBody>
-          {recipeeData.
-          filter((data) => {
-                              if(title === ""){
+          {recipeeData
+           . filter((data) => {
+                              
+                                if(title === null || title === ""){
                                   return data
                               } else if (data.title.toLowerCase().includes(title.toLocaleLowerCase())){
                                       return data
@@ -109,7 +91,10 @@ function getMachineName (mid){
                              else if (data.desc.toLowerCase().includes(title.toLocaleLowerCase())){
                                return data
                              }
-                            }).map((row) => (
+                           
+                             return data 
+                            })
+        .map((row) => (
           <TableRow key={row.id}>
                <TableCell>  <a style={{color: 'orange'}} href={`/DQ/${row.id}`}>{row.title}</a></TableCell>
           </TableRow>
