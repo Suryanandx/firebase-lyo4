@@ -2,6 +2,7 @@ import { Button, Card, Dialog, makeStyles, Toolbar } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import ContentDashboardLayout from "../../components/ContentSidebar/ContentDashboardLayout"
+import DQLayout from "../../components/DQNewSidebar/DQLayout"
 import { db } from "../../firebase"
 import { firebaseLooper } from "../../utils/tools"
 import DashboardNavbar from "../QualityReport/DashboardNavbar"
@@ -73,7 +74,7 @@ function DQContent({match}) {
 	}
 	return (
 		<div>
-		<DashboardNavbar/>
+		<DQLayout match={match}/>{/*Layout DQLayout --> Match (Content ID)  */}
 			
 			 <div >
         <div >

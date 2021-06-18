@@ -58,6 +58,9 @@ import TestVideo from "./VideoCallModel/TestVideo";
 import EntryPage from "./VideoCallModel/EntryPage";
 import DQNew from "./Pages/DQNew/DQNew";
 import DQContent from "./Pages/DQNew/DQContent";
+import DQPurpose from "./Pages/DQPages/DQPurpose";
+import DQGeneral from "./Pages/DQPages/DQGeneral";
+import DQConfig from "./Pages/DQPages/DQConfig";
 
 function App() {
  
@@ -111,7 +114,9 @@ function App() {
         <AppRoute path="/user-manual" exact component={UserManual}  layout={DashboardLayout}/>
         <Route path='/whiteboard' exact component={Whiteboard} layout={MainLayout}/>
          <AppRoute path='/machine-data/:id/DQ-New' exact component={DQNew} layout={MainLayout} />
-
+          <AppRoute path='/DQ/:id/Purpose' exact component={DQPurpose} layout={MainLayout} />
+           <AppRoute path='/DQ/:id/General-Information' exact component={DQGeneral} layout={MainLayout} />
+         <AppRoute path='/DQ/:id/Equipment-Config' exact component={DQConfig} layout={MainLayout} />
       </Switch>
     </Router>
     </BrowserRouter>
