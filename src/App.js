@@ -56,12 +56,14 @@ import Whiteboard from "./components/Whiteboard/Whiteboard";
 import ModelThreeD from "./components/3DModel/ModelThreeD";
 import TestVideo from "./VideoCallModel/TestVideo";
 import EntryPage from "./VideoCallModel/EntryPage";
+import DQNew from "./Pages/DQNew/DQNew";
+import DQContent from "./Pages/DQNew/DQContent";
 
 function App() {
  
   return (
     <>
-  
+ 
       <GlobalStyles/>
     <AuthProvider>
       <Page
@@ -86,7 +88,8 @@ function App() {
         <AppRoute path="/add-machine" exact component={AddMachines} layout={DashboardLayout} />
         <Route path="/forgotPass" exact component={ForgotPass}/>
         <AppRoute path="/machine-data/Job/:id/Job" exact component={JobsList} layout={MainLayout} />
-        <AppRoute path="/DQ/:id" exact component={QualityReport} layout={MainLayout} />
+        <AppRoute path="/DQ/:id/content" exact component={DQContent} layout={MainLayout} />
+         <AppRoute path="/DQ/:id" exact component={QualityReport} layout={MainLayout} />
          <AppRoute path="/Module/:id/Components" exact component={ModuleComponents} layout={MainLayout} />
         <AppRoute path="/users/add-user" exact component={AddUser} layout={DashboardLayout}/>
         <AppRoute path="/account" exact component={AccountDetails} layout={DashboardLayout}/> 
@@ -107,7 +110,8 @@ function App() {
         <AppRoute path="/file-manager" exact component={FileManagerView}  layout={DashboardLayout}/>
         <AppRoute path="/user-manual" exact component={UserManual}  layout={DashboardLayout}/>
         <Route path='/whiteboard' exact component={Whiteboard} layout={MainLayout}/>
-         <Route path='/test' exact component={ModelThreeD} />
+         <AppRoute path='/machine-data/:id/DQ-New' exact component={DQNew} layout={MainLayout} />
+
       </Switch>
     </Router>
     </BrowserRouter>

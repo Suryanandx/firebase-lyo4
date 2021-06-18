@@ -70,6 +70,12 @@ const items = [
         icon: PhoneCallbackIcon
 
     },
+     {
+        title: 'DQ-New',
+        href: '/machine-data',
+        icon: PhoneCallbackIcon
+
+    },
       
   
 

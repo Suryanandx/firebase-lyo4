@@ -23,9 +23,7 @@ function TestVideo({config}) {
               width:500, height: 270
           }}
           />
-           
-          
-          
+         
         </OTStreams>
            </div>
            <div>

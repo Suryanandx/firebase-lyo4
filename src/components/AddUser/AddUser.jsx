@@ -92,6 +92,7 @@ export default function AddUser() {
     if (password.length <= 8){
       return setError("Weak Password !")
     }
+   
     if(role==='Admin'){
       setAdmin(true)
     }
