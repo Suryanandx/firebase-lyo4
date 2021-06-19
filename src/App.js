@@ -61,6 +61,7 @@ import DQContent from "./Pages/DQNew/DQContent";
 import DQPurpose from "./Pages/DQPages/DQPurpose";
 import DQGeneral from "./Pages/DQPages/DQGeneral";
 import DQConfig from "./Pages/DQPages/DQConfig";
+import DQSpecs from "./Pages/DQPages/DQSpecs";
 
 function App() {
  
@@ -117,6 +118,7 @@ function App() {
           <AppRoute path='/DQ/:id/Purpose' exact component={DQPurpose} layout={MainLayout} />
            <AppRoute path='/DQ/:id/General-Information' exact component={DQGeneral} layout={MainLayout} />
          <AppRoute path='/DQ/:id/Equipment-Config' exact component={DQConfig} layout={MainLayout} />
+          <AppRoute path='/DQ/:id/Specifications' exact component={DQSpecs} layout={MainLayout} />
       </Switch>
     </Router>
     </BrowserRouter>

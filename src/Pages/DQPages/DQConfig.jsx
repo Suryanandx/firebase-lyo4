@@ -6,6 +6,7 @@ import DQLayout from "../../components/DQNewSidebar/DQLayout";
 import { db } from "../../firebase"
 import { firebaseLooper } from "../../utils/tools";
 import DQmodules from "../DQNew/DQmodules";
+import DQConfigView from "./DQCOnfigDetails/DQConfigView";
 import DQModule from "./DQModule/DQModule";
 
 
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 function DQConfig({match}) {
 	const [purpose, setPurpose] = useState({})
 	const [title, setTitle] = useState('')
+	const [name, setName] = useState('')
 	const [modules,setModules] = useState([])
 	const [ desc, setDesc] = useState('')
 	const [open, setOpen] = useState(false)
@@ -56,6 +58,7 @@ function DQConfig({match}) {
 	const [opendelete, setOpenDelete] = useState(false)
 	const [titleModule, setTitleModule] = useState('')
 	const [ descModule, setDescModule] = useState('')
+	const [index, setIndex] = useState(0)
 	const classes = useStyles()
 
 	function handleOpen(){
@@ -89,7 +92,7 @@ function DQConfig({match}) {
 		.collection('content')
 		.doc('configuration')
 		
-		.update({title, desc})
+		.update({name, desc})
 	}
 	function handleEditUpdate(id){
 		const title = titleModule
@@ -110,7 +113,7 @@ function DQConfig({match}) {
 		.collection('content')
 		.doc('configuration')
 		.collection('modules')
-		.add({title, desc})
+		.add({title, desc, index})
 	}
 	useEffect(() => {
 		db.collection('DQNew')
@@ -120,8 +123,11 @@ function DQConfig({match}) {
 		.onSnapshot(snapshot => {
 			const data = snapshot.data()
 			setPurpose(data)
-			setTitle(data.title)
+			if(data){
+				setName(data.name)
 			setDesc(data.desc)
+			}
+			
 		})
 		db.collection('DQNew')
 		.doc(match.params.id)
@@ -130,10 +136,22 @@ function DQConfig({match}) {
 		.collection('modules')
 		.onSnapshot(snapshot => {
 			const data = firebaseLooper(snapshot)
+			data.sort(function(a,b){
+				return(a.index-b.index)
+			})
 			setModules(data)
+			setIndex(data.length)
 			
 		})
 	}, [])
+
+	function handleSubmitNew(){
+		db.collection('DQNew')
+		.doc(match.params.id)
+		.collection('content')
+		.doc('configuration')
+		.set({name,desc})
+	}
 	return (
 		<>
 		
@@ -142,7 +160,8 @@ function DQConfig({match}) {
 		 <div className={classes.wrapper}>
         <div className={classes.container}>
           <Card className={classes.content}>
-           <div style={{height: '100vh'}}>
+          { 
+	  purpose ? <div style={{height: '100vh'}}>
 			<Typography variant='h1' align='center' gutterBottom><b>{purpose.name}</b></Typography>
 			<hr />
 			<Typography variant='body1' align='left' gutterBottom><p className='italic'>{purpose.desc}</p></Typography>
@@ -156,7 +175,7 @@ function DQConfig({match}) {
 				<DialogContent>
 					<Typography variant='h4' align='center' gutterBottom><b>Edit Details</b></Typography>
 					<form  >
-					<TextField style={{marginBottom: '3%'}} value={title} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
+					<TextField value={name} style={{marginBottom: '3%'}}  variant='outlined' fullWidth onChange={(e) => setName(e.target.value)}/>
 				<TextField multiline rows={7} value={desc} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
 				</form>
 				</DialogContent>
@@ -182,24 +201,8 @@ function DQConfig({match}) {
 						modules.map(module => (
 				
 							<>
-								
-			<TableBody>
+							<DQConfigView module={module} match={match} key={module.id}/>	
 			
-			<TableRow key={module.id}>
-			<TableCell component="th" scope="row">
-				{module.title}
-			</TableCell>
-			<TableCell align="left">{module.desc}</TableCell>
-			<TableCell align="right">
-				<div>
-					<Button>E</Button>
-					<Button>D</Button>
-					<Button>C</Button>
-				</div>
-			</TableCell>
-			</TableRow>
-		
-			</TableBody>
 					</>
 						))
 					}
@@ -210,41 +213,35 @@ function DQConfig({match}) {
 			
 		}
 		</div>
-		
+		: 
+		<div>
+			< >
+			<Typography variant='h1' align='center'>Add New Configuration details</Typography>
+		<TextField style={{marginBottom: '20px'}} label='Title'  variant='outlined' fullWidth onChange={(e) => setName(e.target.value)}/>
+		<TextField multiline rows={7} label='Description'  variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
+		<Button fullWidth style={{background: 'orange', color: 'white', marginTop: '5%'}} onClick={handleSubmitNew}>Add New</Button>
+	  </>
+		</div>
+		}
           </Card>
         </div>
       </div>
       </> 
 		<Dialog open={openAdd} fullWidth onClose={handleCloseAdd}>
-		<DQLayout match={match}/>
-		<div className={classes.wrapper}>
-        <div className={classes.container}>
-          <Card className={classes.content}>
-          <Typography >Add New Modules</Typography>
-	  <form>
-		<TextField  variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
-		<TextField  variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
-		<Button onClick={handleSubmit}>Add New</Button>
-	  </form>
-          </Card>
-        </div>
-      </div>
+
+          <Typography variant='h4' align='center'  ><b>Add New Modules</b></Typography>
+	  <DialogContent>
+		<TextField style={{marginBottom: '5%'}} label='Title'  variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
+		<TextField rows={7} multiLine label='Description' variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
+		
+	  </DialogContent>
+	  <DialogActions>
+		  <Button onClick={handleCloseAdd} variant='contained' color='secondary'>Cancel</Button>
+		  <Button style={{background:'orange', color:'white'}} onClick={handleSubmit}>Add New</Button>
+	  </DialogActions>
+          
       </Dialog>
-      <Dialog style={{alignItems: 'center'}} fullWidth open={openEdit} onClose={handleCloseEdit}>
-				<DialogContent>
-					<Typography variant='h4' align='center' gutterBottom><b>Edit Details</b></Typography>
-					<form  >
-					<TextField style={{marginBottom: '3%'}} value={title} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
-				<TextField multiline rows={7} value={desc} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
-				</form>
-				</DialogContent>
-				
-				
-			<DialogActions>
-				<Button onClick={handleCloseEdit}>Cancel</Button>
-				<Button onClick={handleEditUpdate} style={{backgroundColor: 'orange', color: 'whitesmoke'}}>Update</Button>
-			</DialogActions>
-			</Dialog>
+     
 		</>
 	)
 }

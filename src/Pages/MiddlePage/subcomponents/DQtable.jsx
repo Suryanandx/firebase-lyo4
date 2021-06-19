@@ -74,25 +74,26 @@ export default function DQtable() {
          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                
                  <div className="relative"> 
-                 
+                
                   {/* <input style={{ border: '2px solid whitesmoke'}} onChange={(e) => setTitle(e.target.value)} type="text" className="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search..."/> */}
                 
               </div>
               </div>
         <TableBody>
-          {recipeeData
-           . filter((data) => {
+          {recipeeData && 
+          recipeeData
+           . filter((row) => {
                               
                                 if(title === null || title === ""){
-                                  return data
-                              } else if (data.title.toLowerCase().includes(title.toLocaleLowerCase())){
-                                      return data
+                                  return row
+                              } else if (row.title.toLowerCase().includes(title.toLocaleLowerCase())){
+                                      return row
                              }
-                             else if (data.desc.toLowerCase().includes(title.toLocaleLowerCase())){
-                               return data
+                             else if (row.desc.toLowerCase().includes(title.toLocaleLowerCase())){
+                               return row
                              }
                            
-                             return data 
+                             return row 
                             })
         .map((row) => (
           <TableRow key={row.id}>

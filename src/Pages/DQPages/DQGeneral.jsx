@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
 
 function DQGeneral({match}) {
 	const [purpose, setPurpose] = useState({})
-	const [title, setTitle] = useState(purpose.title)
-	const [ desc, setDesc] = useState(purpose.desc)
+	const [title, setTitle] = useState('')
+	const [ desc, setDesc] = useState('')
 	const [open, setOpen] = useState(false)
 	const [opendelete, setOpenDelete] = useState(false)
 	const classes = useStyles()
@@ -76,7 +76,7 @@ function DQGeneral({match}) {
 		.doc(match.params.id)
 		.collection('content')
 		.doc('general')
-		.update({title, desc})
+		.set({title, desc})
 	}
 	useEffect(() => {
 		db.collection('DQNew')
@@ -86,8 +86,11 @@ function DQGeneral({match}) {
 		.onSnapshot(snapshot => {
 			const data = snapshot.data()
 			setPurpose(data)
-			setTitle(data.title)
+			if(data){
+				setTitle(data.title)
 			setDesc(data.desc)
+			}
+			
 		})
 	}, [])
 	return (
@@ -112,7 +115,7 @@ function DQGeneral({match}) {
 					<Typography variant='h4' align='center' gutterBottom><b>Edit Details</b></Typography>
 					<form  >
 					<TextField style={{marginBottom: '3%'}} value={title} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
-				<TextField multiline rows={7} value={desc} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
+				<TextField multiline rows={7} value={desc} variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>
 				</form>
 				</DialogContent>
 				
@@ -135,12 +138,13 @@ function DQGeneral({match}) {
 		<div className={classes.wrapper}>
         <div className={classes.container}>
           <Card className={classes.content}>
-          <Button>Add New Purpose</Button>
-	  <form onSubmit={handleSubmit} >
-		<TextField value={title} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
-		<TextField value={desc} variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>  
-		<Button type="submit">Add New</Button>
-	  </form>
+          
+	 <div style={{padding: '10%', paddingTop: '0'}} >
+		   <Typography variant='h1' align='center' gutterBottom><b>Add New Information</b></Typography>	
+		<TextField style={{marginBottom: '20px'}} label='Title' variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
+		<TextField style={{marginBottom: '5%'}} label='Description' multiLine rows={7}  variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
+		<Button fullWidth style={{background: 'orange', color: 'white'}} onClick={handleSubmit}>Add New</Button>
+	  </div>
           </Card>
         </div>
       </div>
