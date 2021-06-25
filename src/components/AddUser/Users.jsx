@@ -12,7 +12,7 @@ import UserItem from './UserItem';
 import Page from '../Page';
 const useStyles = makeStyles((theme) =>( {
     add: {
-    
+   
     backgroundImage: 'linear-gradient(to left bottom, #fa630f, #fc8218, #fd9d29, #feb63f, #ffce59)',
     
     margin: theme.spacing(3, 0, 2),
@@ -57,8 +57,8 @@ const Users = () => {
             
               <div  style={{display: 'flex', justifyContent: 'space-between'}}>
                   <div>
-                      <Typography variant='h1'><b>Users</b></Typography>
-              <Typography variant='h5'>List of available users</Typography>
+                      <Typography style={{color: '#43425D'}} variant='h1'><b>Users</b></Typography>
+              <Typography variant='h5' style={{color: '#43425D'}}>List of available users</Typography>
                   </div>
          
         {error && <Typography variant="h6">{error}</Typography>}

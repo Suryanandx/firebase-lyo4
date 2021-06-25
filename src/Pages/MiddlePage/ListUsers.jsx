@@ -51,7 +51,7 @@ const ListUsers = (props) =>{
         >
           <Avatar 
           style={{ background: '#E8E7FF 0% 0% no-repeat padding-box'}}
-          src={users.url}
+          src={user.url}
           ></Avatar>
           
           <ListItemText

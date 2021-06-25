@@ -94,7 +94,7 @@ const updateUser=(id) => {
     })
     
   }
-    
+  
 
     return (
           <>
@@ -126,15 +126,15 @@ const updateUser=(id) => {
                     <Avatar src={users.url} className={classes.large}/>
                     <div  >
                       
-                          <Typography align="left" variant="h6" style={{opacity: 1, font: 'normal normal bold 18px/13px Roboto'}}><b>{users.firstName} {users.lastName}</b></Typography>
+                          <Typography align="left" variant="h6" style={{opacity: 1, font: 'var(--unnamed-font-style-normal) normal bold var(--unnamed-font-size-18)/13px var(--unnamed-font-family-roboto)', color: '#4D4F5C'}}><b>{users.firstName} {users.lastName}</b></Typography>
                            <Typography align="left" variant="body2" style={{opacity: 0.5, font: 'normal normal normal 15px/25px Roboto'}}>{users.role}</Typography>
                       
                     <div style={{display: 'flex'}}>
                      
-                        <Typography style={{opacity: 0.5, font: 'normal normal normal 15px/25px Roboto', marginRight: '20px'}} align="left" >Email : {users.email}</Typography>
+                        <Typography style={{opacity: 0.5, font: 'var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 15px/25px var(--unnamed-font-family-roboto', marginRight: '20px', color: '#43425D'}} align="left" >Email : {users.email}</Typography>
                      
                      
-                        <Typography style={{opacity: 0.5, font: 'normal normal normal 15px/25px Roboto'}} align="left" >Phone: {users.phone}</Typography>
+                        <Typography style={{opacity: 0.5, font: 'var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 15px/25px var(--unnamed-font-family-roboto)', color: '#43425D'}} align="left" >Phone: {users.phone}</Typography>
                       
                        
                     </div>
