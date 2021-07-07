@@ -74,7 +74,7 @@ function DQComponents({match, module_id}) {
 				
 						
 							<DQComponentsView module_id={module_id} components={components} match={match} key={components.id}/>	
-			
+			 
 					
 						))
 					}
