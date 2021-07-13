@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link as RouterLink, Redirect, useHistory, useLocation } from 'react-router-dom';
+import { Link as RouterLink, NavLink, Redirect, useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Avatar,
@@ -138,13 +138,13 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Box m={2} >
         <List className="flex flex-col items-center w-full mt-3 border-t border-gray-700">
           <ListItem>
-            <a style={{textDecoration: 'none', color:'orange'}} className="flex items-center w-full h-12 px-3 mt-2 text-gray-200 bg-black rounded" href="/">
+            <Button component={NavLink} style={{textDecoration: 'none', color:'orange'}} className="flex items-center w-full h-12 px-3 mt-2 text-gray-200 bg-black rounded" to="/">
                     <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
  				</svg>
 					
 					<span className="ml-2 text-sm font-medium">DASHBOARD</span>
- 			</a>
+ 			</Button>
           </ListItem>
           
          

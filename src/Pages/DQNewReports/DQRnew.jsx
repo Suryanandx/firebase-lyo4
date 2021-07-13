@@ -83,7 +83,7 @@ function DQRnew({match}) {
                 {row.name}
               </TableCell>
               <TableCell align="right">{row.desc}</TableCell>
-              <TableCell align="right">{moment.unix(row.timestamp).format("MMM Do YY")}</TableCell>
+              <TableCell align="right">{row.timestamp.toDate().toString().substring(0,15)}</TableCell>
              
               <TableCell align="right"><Button className='animate-bounce' component={NavLink} to={`/DQR/${row.id}/Purpose`}><ArrowForwardIcon/></Button></TableCell>
             </TableRow>

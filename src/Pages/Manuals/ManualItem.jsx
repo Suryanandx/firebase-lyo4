@@ -4,6 +4,7 @@ import { Alert } from 'bootstrap';
 import { AlertTitle } from '@material-ui/lab';
 import { db } from '../../firebase';
 import { DescriptionTwoTone } from '@material-ui/icons';
+import { NavLink } from 'react-router-dom';
 
 const ManualItem = ({data}) => {
      const [title, setContentName] = useState(data.title)
@@ -75,9 +76,9 @@ const ManualItem = ({data}) => {
             <div className="flex items-center justify-between">
               <h1 className="mt-2 text-lg font-semibold text-gray-800 dark:text-white">{data.title}</h1>
             
-            <a style={{background: '#0C03EB'}} href={`/Manuals/${data.id}/Steps`} className="px-3 py-1 text-xs text-white uppercase bg-indigo-700 rounded-full dark:bg-indigo-300 dark:text-indigo-900">Steps</a>
+            <Button component={NavLink} style={{background: '#0C03EB'}} to={`/Manuals/${data.id}/Steps`} className="px-3 py-1 text-xs text-white uppercase bg-indigo-700 rounded-full dark:bg-indigo-300 dark:text-indigo-900">Steps</Button>
         </div>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">{data.desc}</p>
+           {data.desc &&  <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">{data.desc.slice(0,30)}</p>}
         </div>
 
         <div>

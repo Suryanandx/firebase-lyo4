@@ -87,7 +87,7 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
         height: '100%'
       }}
     >
-        <a style={{textDecoration: 'none', color:'white', backgroundColor: 'black'}} className="flex items-center w-full px-3 mt-3" href="#">
+        <a component={NavLink} to='/' style={{textDecoration: 'none', color:'white', backgroundColor: 'black'}} className="flex items-center w-full px-3 mt-3" href="#">
 			
                  <img
     alt="Logo"
@@ -150,7 +150,8 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
           }}
         >
           <Button
-          onClick={handleReturn}
+          component={NavLink}
+          to={`/machine-data/Reports/${manual}/Recipes`}
           style={{backgroundImage: "linear-gradient(to left bottom, #a39df3, #8885e8, #6b6fdd, #4859d1, #0144c6)", color: "white", width: "150px"}}
           startIcon={<KeyboardReturnIcon/>}
             variant="contained"

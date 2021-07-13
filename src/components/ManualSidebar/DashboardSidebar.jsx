@@ -158,7 +158,8 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
           }}
         >
           <Button
-          onClick={handleReturn}
+          component={NavLink}
+         to={`/machine-data/Manuals/${manual}/Manuals`}
           style={{backgroundImage:' linear-gradient(to left bottom, #a39df3, #8885e8, #6b6fdd, #4859d1, #0144c6)', color: "white", width: "150px"}}
           startIcon={<KeyboardReturnIcon/>}
             variant="contained"

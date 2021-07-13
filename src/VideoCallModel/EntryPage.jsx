@@ -46,7 +46,7 @@ function EntryPage() {
                 {/* <FormHelperText>Select the mode to be used</FormHelperText>
                 <Button onClick={handleChange}>Set mode</Button> */}
                 <br />
-               {configData &&  <h6>{configData.session_id}</h6>}
+              
                 <div className="flex flex-col justify-evenly lg:flex-row">
                   <button onClick={(e) => handleOpen()} className="flex items-center px-6 py-2 mt-auto font-semibold text-white transition duration-500 ease-in-out transform bg-yellow-900 rounded-lg hover:bg-yellow-700 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"> Instant Meeting</button>
                 </div>

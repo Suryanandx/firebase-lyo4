@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
-import { InputLabel, Select } from '@material-ui/core';
+import { FormHelperText, Select } from '@material-ui/core';
 import { useAuth } from "../context/AuthContext"
 import {db} from '../../firebase'
 import LogIn from '../LogIn/LogIn';
@@ -89,10 +89,12 @@ export default function AddUser() {
     if (password !== confirmPass) {
       return setError("Passwords do not match")
     }
-    if (password.length <= 8){
-      return setError("Weak Password !")
+    if (password.length < 6){
+      return setError("Weak Password ! Passwords should be atleast 6 characters")
     }
-   
+   if (phone < 10 || phone > 10 ){
+    return setError("Phone Number should be 10 digits !")
+   }
     if(role==='Admin'){
       setAdmin(true)
     }
@@ -104,7 +106,7 @@ export default function AddUser() {
       db.collection('users').add(userData)
       history.push("/")
     } catch {
-      setError("Failed to create an account")
+      setError("Failed to create an account. Make sure you are using a unique email")
     }
 
     setLoading(false)
@@ -196,7 +198,7 @@ export default function AddUser() {
                 variant="outlined"
                 required
                 fullWidth
-                helperText="Password must have atleast 8 characters"
+                helperText="Password must have atleast 6 characters"
                 ref={passwordRef}
                 id="password"
                 label="Password"
@@ -222,7 +224,7 @@ export default function AddUser() {
             </Grid>
 
             <Grid item xs={12}>
-              <InputLabel color="secondary" variant="outlined">Role</InputLabel>
+             
         <Select
         fullWidth
         variant="outlined"
@@ -243,6 +245,7 @@ export default function AddUser() {
           <option value="Validator">Validator</option>
            <option value="Maintenance">Maintenance</option>
         </Select>
+        <FormHelperText>Role</FormHelperText>
             </Grid>
            
           </Grid>

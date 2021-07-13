@@ -53,7 +53,7 @@ const NavItem = ({
         )}
         <span>
           
-            <b >{title}</b> 
+            <b className='ml-2'>{title}</b> 
          
         </span>
       </Button>
@@ -90,7 +90,7 @@ const NavItem = ({
         )}
         <span>
           
-            <b >{title}</b> 
+            <b className='ml-2'>{title}</b> 
          
         </span>
       </Button>
