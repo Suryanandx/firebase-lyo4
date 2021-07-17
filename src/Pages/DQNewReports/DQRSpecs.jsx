@@ -79,7 +79,7 @@ function DQRSpecs({match}) {
 			 <div className={classes.wrapper}>
         <div className={classes.container}>
           <Card className={classes.content}>
-           <div style={{height: '100vh'}}>
+           <div>
 			{purpose && <Typography variant='h1' align='center' gutterBottom><b>{purpose.name}</b></Typography>
 			}<hr />
 		

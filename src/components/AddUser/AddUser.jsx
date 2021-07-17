@@ -18,7 +18,7 @@ import { FormHelperText, Select } from '@material-ui/core';
 import { useAuth } from "../context/AuthContext"
 import {db} from '../../firebase'
 import LogIn from '../LogIn/LogIn';
-
+import validator from 'validator'
 
 function Copyright() {
   return (
@@ -92,12 +92,18 @@ export default function AddUser() {
     if (password.length < 6){
       return setError("Weak Password ! Passwords should be atleast 6 characters")
     }
-   if (phone < 10 || phone > 10 ){
+   if (phone.length < 10 || phone.length > 10 ){
     return setError("Phone Number should be 10 digits !")
    }
     if(role==='Admin'){
       setAdmin(true)
     }
+   if(validator.isEmail(email)){
+     setError("")
+   }else{
+     setError("Please put a valid email !")
+   }
+    
     const userData = {firstName, lastName, email, password, phone, role, username, admin}
     try {
       setError("")
@@ -106,7 +112,7 @@ export default function AddUser() {
       db.collection('users').add(userData)
       history.push("/")
     } catch {
-      setError("Failed to create an account. Make sure you are using a unique email")
+      setError("Failed to create an account.This is either due to invalid input of email/ the email already exist in Database")
     }
 
     setLoading(false)
@@ -263,10 +269,9 @@ export default function AddUser() {
             type="submit"
             fullWidth
             variant="contained"
-            
             disabled
             className={classes.submit}
-          >Creating user....</Button> &&<Alert severity="success">User Added Successfully!</Alert>
+          >Creating user....</Button> 
          }   
          
         </form>

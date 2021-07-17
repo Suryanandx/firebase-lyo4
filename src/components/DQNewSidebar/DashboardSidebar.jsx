@@ -87,20 +87,12 @@ const items = [
       href: '/DQ',
         icon: SortByAlphaIcon,
        
-    },
-      {
-        title: 'Others',
-      href: '/DQ',
-        icon: BlurCircularIcon,
-       
-    },
-
-
+    }
 
 
 ];
 
-const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
+const DashboardSidebar = ({ onMobileClose, match, openMobile }) => {
   const location = useLocation();
    const [navbar, setNavbar] = useState([])
   const {currentUser} = useAuth()
@@ -120,7 +112,7 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
       setUserData(data[0])
     })
      db.collection('DQNew').doc(match.params.id).onSnapshot(snap => {
-      setKey(snap.data( ).mid)
+      setKey(snap.data().mid)
     })
   }, [location.hrefname]);
 

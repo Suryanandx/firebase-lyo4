@@ -97,7 +97,11 @@ export default function JobsList({match}) {
                <Typography align='center' variant='body2' >- These are all the Job status -</Typography>
               </div>
               <br/>
-              <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+              <div style={{display: 'flex', justifyContent: 'space-evenly', marginBottom: '30px'}}>
+              <div className="relative mr-2"> 
+                 <input style={{ border: '2px solid whitesmoke'}} onChange={(e) => setTitle(e.target.value)} type="text" className="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search Jobs..."/>
+                  <div className="absolute top-4 right-3"> <i className="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i> </div>
+              </div>
                  <TextField
                 id="date"
                 label="Select Date"
@@ -111,16 +115,13 @@ export default function JobsList({match}) {
              <Button onClick={handleClick}>Reset</Button>
               
                
-                 <div className="relative"> 
-                 <input style={{ border: '2px solid whitesmoke'}} onChange={(e) => setTitle(e.target.value)} type="text" className="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search Jobs..."/>
-                  <div className="absolute top-4 right-3"> <i className="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i> </div>
-              </div>
+                
               </div>
            
                  <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
-                 <Typography variant='h4' align='left' gutterBottom><b>{mTitle}</b></Typography>
+                 <Typography className='ml-2' variant='h5' align='left' gutterBottom><b>{mTitle}</b></Typography>
           <TableRow>  
             <TableCell  style={{backgroundColor: '#d8e3e7'}}><b>Title</b></TableCell>
             <TableCell style={{backgroundColor: '#d8e3e7'}} align="center"><b>Description</b></TableCell>
@@ -131,7 +132,7 @@ export default function JobsList({match}) {
         </TableHead>
         <TableBody>
           {job.filter((row) => {
-            if(title == "" ){
+            if(title === "" ){
               return row
             } else if (row.title.toLowerCase().includes(title.toLocaleLowerCase())){
               return row

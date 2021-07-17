@@ -3,7 +3,7 @@ import { OTPublisher } from 'opentok-react';
 import CheckBox from './CheckBox';
 import '../OpenTok.css'
 import { Button, Card, Container, Grid, Hidden, Toolbar } from '@material-ui/core';
-
+import ScreenShareIcon from '@material-ui/icons/ScreenShare';
 
 class Publisher extends React.Component {
   constructor(props) {
@@ -71,40 +71,7 @@ class Publisher extends React.Component {
     const {  publishScreen } = this.state;
     return (
       <div className='bg-black mx-10 mb-10 p-10'>
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-end'}}>
-         
-        <div  style={{display: 'flex',background: 'black', justifyContent: 'flex-end'}}>
-           <OTPublisher
-         properties={{
-              showControls: true,
-              insertMode: 'append',
-              publishAudio: true,
-              publishVideo: this.state.video,
-              width:500, height: 270
-          }}
-        />
-        </div>
-         <Toolbar  style={{display: 'flex',background: 'black', justifyContent: 'flex-end'}}>
-          <div style={{marginRight: '20px'}}>
-            <Button style={{color: 'white', backgroundColor: 'orange'}} variant='outlined' onClick={this.toggleScreenshare}>Share screen</Button>
-          </div>
-          
-        <div className='bg-black'>
-          <CheckBox
-          label="Video"
-          initialChecked={this.state.video}
-          onChange={this.setVideo}
-        />
-        </div>
-        <div>
-         
-        </div>
-        
-        </Toolbar>
-        </div>
-         
-       
-        <Container className="bg-black">
+          <Container className="bg-black">
         <Grid
         container
         spacing={3}
@@ -137,6 +104,40 @@ class Publisher extends React.Component {
        
 
       </Container>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-end'}}>
+         
+        <div  style={{display: 'flex',background: 'black', justifyContent: 'flex-end'}}>
+           <OTPublisher
+         properties={{
+              showControls: true,
+              insertMode: 'append',
+              publishAudio: true,
+              publishVideo: this.state.video,
+              width:500, height: 270
+          }}
+        />
+        </div>
+         <Toolbar  style={{display: 'flex',background: 'black', justifyContent: 'flex-end'}}>
+          <div style={{marginRight: '20px'}}>
+            <Button style={{color: 'orange'}} variant='outlined' onClick={this.toggleScreenshare}><ScreenShareIcon/></Button>
+          </div>
+          
+        <div className='bg-black'>
+          <CheckBox
+          label="Video"
+          initialChecked={this.state.video}
+          onChange={this.setVideo}
+        />
+        </div>
+        <div>
+         
+        </div>
+        
+        </Toolbar>
+        </div>
+         
+       
+      
       <div>
          {this.state.error ? <b id="error">{this.state.error}</b> : null}
       </div>

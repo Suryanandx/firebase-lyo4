@@ -1,4 +1,5 @@
-import { Button, Dialog, TableCell, TableRow, Toolbar } from "@material-ui/core"
+import { Button, Dialog, TableCell, TableRow, Toolbar, Collapse } from "@material-ui/core"
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { useGridState } from "@material-ui/data-grid"
 import { useState } from "react"
 import DQRComponents from "./DQRComponents"
@@ -20,15 +21,14 @@ function DQRConfigView({row, match}) {
               <TableCell align="right">{row.desc}</TableCell>
              
               
-              <TableCell align="right"><Button className='animate-pulse' onClick={handleOpen}><ArrowForwardIcon/></Button></TableCell>
-	      <Dialog fullScreen onClose={handleClose} open={open}>
-		<Toolbar>
-			<Button onClick={handleClose}>Exit</Button>
-			
-		</Toolbar>
-		<DQRComponents key={row.id} moduleId={row.id} match={match}/>
-	      </Dialog>
+              <TableCell align="right"><Button className='animate-pulse' onClick={() => setOpen(!open)}>{!open ? <ArrowForwardIcon/> : <ArrowUpwardIcon/>}</Button></TableCell>
+	      
             </TableRow>
+			<Collapse in={open}>
+		<br />
+		<DQRComponents type={row.type} key={row.id} moduleId={row.id} match={match}/>
+		<br />
+	      </Collapse>
 		</>
 	)
 }

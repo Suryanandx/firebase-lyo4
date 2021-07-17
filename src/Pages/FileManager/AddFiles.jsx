@@ -201,6 +201,7 @@ const AddFiles = ({match}) => {
          useChipsForPreview
         showAlerts={false}
         filesLimit={1}
+        maxFileSize={6000000}
       />
     
      <h5>{progress}% Uploaded</h5>

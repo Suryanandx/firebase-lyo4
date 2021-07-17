@@ -4,6 +4,7 @@ import Page from "../components/Page";
 import RenderVc from "../components/VideoCall/RenderVc";
 import { db } from "../firebase";
 import WebcamComponent from "./WebComponent";
+import CloseIcon from '@material-ui/icons/Close';
 
 function EntryPage() {
     const [open, setOpen] = useState(false)
@@ -35,6 +36,10 @@ function EntryPage() {
 
           <section className="text-gray-700 ">
             <div className="container flex flex-col items-center px-5 py-16 mx-auto md:flex-row lg:px-24">
+            <div className="w-full lg:w-5/6 lg:max-w-lg md:w-1/2 mr-5">
+                {/* <img className="object-cover object-center rounded-lg " alt="hero" src="https://dummyimage.com/720x600/F3F4F7/8693ac"/> */}
+                     <WebcamComponent/>
+              </div>
               <div className="flex flex-col items-start mb-16 text-left lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:mb-0">
                 <h2 className="mb-8 text-xs font-semibold tracking-widest text-black uppercase title-font"> VIDEO CALL</h2>
                 <h1 className="mb-8 text-2xl font-black tracking-tighter text-black md:text-5xl title-font"> Join or Create a new Session</h1>
@@ -51,15 +56,13 @@ function EntryPage() {
                   <button onClick={(e) => handleOpen()} className="flex items-center px-6 py-2 mt-auto font-semibold text-white transition duration-500 ease-in-out transform bg-yellow-900 rounded-lg hover:bg-yellow-700 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"> Instant Meeting</button>
                 </div>
               </div>
-              <div className="w-full lg:w-5/6 lg:max-w-lg md:w-1/2">
-                {/* <img className="object-cover object-center rounded-lg " alt="hero" src="https://dummyimage.com/720x600/F3F4F7/8693ac"/> */}
-                     <WebcamComponent/>
-              </div>
+            
             </div>
+           
           </section>
         <Dialog style={{background: 'black'}} open={open} fullScreen>
             <Toolbar style={{background: 'black'}}>
-                <button className='text-lg bg-yellow-800 w-40 text-gray-100 hover:bg-yellow-600' onClick={(e) => handleClose()}>Close</button>
+                <button className='text-lg  w-40 text-yellow-800 hover:text-yellow-600' onClick={(e) => handleClose()}><CloseIcon/></button>
             </Toolbar>
             <RenderVc config={configData}/>
         </Dialog>

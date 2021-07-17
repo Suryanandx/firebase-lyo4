@@ -51,36 +51,30 @@ function DQRConfig({match}) {
 	
 	const classes = useStyles()
 	useEffect(() => {
+		
 		db.collection('DQNewReport')
 		.doc(match.params.id)
 		.collection('content')
-		.doc('configuration')
-		.onSnapshot(snapshot => {
-			const data = snapshot.data()
-			setPurpose(data)
-		})
-		db.collection('DQNewReport')
-		.doc(match.params.id)
-		.collection('content')
-		.doc('configuration')
+		.doc('config')
 		.collection('modules')
 		.onSnapshot(snapshot => {
 			const data = firebaseLooper(snapshot)
+      data.sort(function(a,b){
+        return(a.index-b.index)
+      })
 			setConfigData(data)
 		})
 	}, [])
 	return (
-		<div>
+		<>
 			<DQRLayout match={match}/>
 			 <div className={classes.wrapper}>
         <div className={classes.container}>
           <Card className={classes.content}>
-           <div style={{height: '100vh'}}>
-			{purpose && <Typography variant='h1' align='center' gutterBottom><b>{purpose.name}</b></Typography>
-			}<hr />
-			
+           <>
+          <Typography  align='center'>Configuration</Typography>
 			 <TableContainer component={Paper}>
-      <Table  aria-label="simple table">
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell style={{background: '#4C4C6D', color: 'white', font: 'bold'}}>Name</TableCell>
@@ -98,11 +92,11 @@ function DQRConfig({match}) {
       </Table>
     </TableContainer>
 			
-		</div>
+		</>
           </Card>
         </div>
       </div>
-		</div>
+		</>
 	)
 }
 

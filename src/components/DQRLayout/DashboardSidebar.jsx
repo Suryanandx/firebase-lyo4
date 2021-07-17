@@ -20,15 +20,27 @@ import ReceiptIcon from '@material-ui/icons/Receipt';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import ReportIcon from '@material-ui/icons/Report';
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import SecurityIcon from '@material-ui/icons/Security';
+import BuildIcon from '@material-ui/icons/Build';
+import SortByAlphaIcon from '@material-ui/icons/SortByAlpha';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 import NavItem from './NavItem';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../../firebase';
 import { firebaseLooper } from '../../utils/tools';
 import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode';
+import CompareIcon from '@material-ui/icons/Compare';
 
 
 const items = [
+  {
+    title: 'Approval',
+  href: '/DQR',
+    icon: ChromeReaderModeIcon,
+   
+},
    {
         title: 'Purpose',
       href: '/DQR',
@@ -52,7 +64,25 @@ const items = [
         icon: ActivityIcon,
        
     },
+    {
+      title: 'Design-Specs',
+    href: '/DQR',
+      icon: BorderColorIcon,
+     
+  },
 
+    {
+      title: 'Safety',
+    href: '/DQR',
+      icon: SecurityIcon,
+     
+  },
+{
+      title: 'Attachments',
+    href: '/DQR',
+      icon: BuildIcon,
+     
+  }
 ];
 
 const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
@@ -87,7 +117,7 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
         height: '100%'
       }}
     >
-      <a style={{textDecoration: 'none', color:'white', backgroundColor: 'black'}} className="flex items-center w-full px-3 mt-3" href="#">
+      <a style={{textDecoration: 'none', color:'white', backgroundColor: 'black'}} className="flex items-center w-full px-3 mt-3" href="/">
 			
                  <img
     alt="Logo"
@@ -101,13 +131,13 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
       <Divider />
       <Box m={2} >
         <List>        
-            <a style={{textDecoration: 'none', color:'orange'}} className="flex items-center w-full h-12 px-3 mt-2 text-gray-200 bg-gray-700 rounded" href="/">
+            <Button style={{textDecoration: 'none', color:'orange'}} className="flex items-center w-full h-12 px-3 mt-2 text-gray-200 bg-gray-700 rounded" component={NavLink} to="/">
                     <svg className="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
  				</svg>
 					
 					<span className="ml-2 text-sm font-medium">Dashboard</span>
- 			</a>
+ 			</Button>
               {items.map((item) => (
               <div key={item.title} className="flex items-center w-full h-12 px-3 mt-2 rounded hover:bg-gray-700 hover:text-gray-300">
             <NavItem

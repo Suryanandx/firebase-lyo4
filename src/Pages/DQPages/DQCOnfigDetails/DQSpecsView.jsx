@@ -30,7 +30,7 @@ function DQSpecsView({specs, match}) {
 		.doc('specifications')
 		.collection('specDetails')
 		.doc(specs.id)
-		.update({review, desc})
+		.update({desc})
 	}
 	function handleDelete(id){
 		db.collection('DQNew')

@@ -33,15 +33,15 @@ function DocView({module, match}) {
 	}
 	function handleUpdate(){
 		db.collection('DQNew').doc(match.params.id)
-		.collection('content').doc('configuration')
-		.collection('documentation')
+		.collection('content').doc('config')
+		.collection('components')
 		.doc(module.id)
 		.update({title, desc})
 	}
 	function handleDelete(id){
 		db.collection('DQNew').doc(match.params.id)
-		.collection('content').doc('configuration')
-		.collection('documentation')
+		.collection('content').doc('config')
+		.collection('components')
 		.doc(id)
 		.delete()
 	}

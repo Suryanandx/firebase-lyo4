@@ -49,8 +49,8 @@ function DQDocumentation({match}) {
 	function handleSubmit(){
 		const index = contents.length
 		db.collection('DQNew').doc(match.params.id)
-		.collection('content').doc('configuration')
-		.collection('documentation').add({title,desc,index,dtype})
+		.collection('content').doc('config')
+		.collection('module').add({title,desc,index,dtype,type: 1})
 	}
 	return (
 		<>
@@ -61,29 +61,9 @@ function DQDocumentation({match}) {
 			<Toolbar style={{display: 'flex', justifyContent: 'flex-end'}}>
 				<Button onClick={handleOpen} style={{background: 'orange', color: 'white'}}>Add Items</Button>
 			</Toolbar>
-
-			<TableContainer component={Paper}>
-		<Table  aria-label="simple table">
-			<TableHead>
-			<TableRow>
-			<TableCell style={{background: '#4C4C6D', color: 'white', font: 'bold'}}><b className='text-lg font-bold italic'>Title</b></TableCell>
-			<TableCell style={{background: '#4C4C6D', color: 'white', font: 'bold'}} align="left"><b className='text-lg font-bold italic'>Description</b></TableCell>
 			
-			<TableCell style={{background: '#4C4C6D', color: 'white', font: 'bold'}} align="right"><b className='text-lg font-bold italic'>Actions</b></TableCell>
-			</TableRow>
-			</TableHead>
-					{
-						contents.map(module => (
 				
-							<>
-							<DocView module={module} match={match} key={module.id}/>	
-			
-					</>
-						))
-					}
-					
-		</Table>
-		</TableContainer>
+		
 		<Dialog open={open} onClose={handleClose} fullWidth>
 	<Typography variant='h3' align='center' gutterBottom><b>Add new items</b></Typography>
 	<DialogContent>

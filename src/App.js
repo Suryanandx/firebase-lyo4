@@ -78,6 +78,10 @@ import DesignSpecs from "./Pages/Design-Specs/DesignSpecs";
 import Safety from "./Pages/safety/Safety";
 import Attachments from "./Pages/Attachments/Attachments";
 import Abbreviations from "./Pages/abbreviations/Abbreviations";
+import DQRSafety from "./Pages/DQNewReports/DQRSafety";
+import DQRSpecsd from "./Pages/DQNewReports/DQRSpecsd";
+import DQRAttachments from "./Pages/DQNewReports/DQRAttachments";
+import DQRApproval from "./Pages/DQNewReports/DQRApproval";
 
 function App() {
 
@@ -147,11 +151,14 @@ function App() {
               <AppRoute path='/IQ/:id/control' exact component={IQControlPanel} layout={MainLayout} />
                <AppRoute path='/IQ/:id/software' exact component={IQSoftware} layout={MainLayout} />
                <AppRoute path='/DQ/:id/Approval' exact component={Approval} layout={MainLayout} />
+               <AppRoute path='/DQR/:id/Approval' exact component={DQRApproval} layout={MainLayout} />
                 <AppRoute path='/DQ/:id/Design-Specs' exact component={DesignSpecs} layout={MainLayout} />
+                <AppRoute path='/DQR/:id/Design-Specs' exact component={DQRSpecsd} layout={MainLayout} />
                   <AppRoute path='/DQ/:id/Safety' exact component={Safety} layout={MainLayout} />
                    <AppRoute path='/DQ/:id/Attachments' exact component={Attachments} layout={MainLayout} />
-               
+                   <AppRoute path='/DQR/:id/Attachments' exact component={DQRAttachments} layout={MainLayout} />
                  <AppRoute path='/DQ/:id/Abbreviations' exact component={Abbreviations} layout={MainLayout} />
+                 <AppRoute path='/DQR/:id/Safety' exact component={DQRSafety} layout={MainLayout} />
       </Switch>
     </Router>
     </BrowserRouter>
