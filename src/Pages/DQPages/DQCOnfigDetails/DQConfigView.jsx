@@ -39,6 +39,7 @@ function DQConfigView({module, match}) {
 		.collection('modules')
 		.doc(module.id)
 		.update({title, desc})
+		.then(() => {setOpen(false)})
 	}
 	function handleDelete(id){
 		db.collection('DQNew')

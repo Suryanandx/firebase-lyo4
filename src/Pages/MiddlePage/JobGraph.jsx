@@ -1,4 +1,4 @@
-import { Card, Container, InputLabel, Select, Typography } from '@material-ui/core';
+import { Card, Container, FormControl, InputLabel, MenuItem, Select, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react'
 import { Doughnut, Pie } from 'react-chartjs-2';
@@ -81,20 +81,24 @@ const JobGraph = () => {
         
         <Card >
           <br />
-            <Typography style={{marginLeft:'24px' ,color:'#43425D', opacity: 0.68}} variant='h2' align='left' gutterBottom><b style={{marginLeft:'24px',color:'#43425D'}}>Jobs Data</b></Typography>
-            <div  style={{width: '' , marginTop: 0, marginLeft: '25px', marginRight: '25px'}}>
-               <select style={{width: '75%', border: '2px solid whitesmoke', height: '46px'}} onChange={handleChange} className=' ' >
-                <option value="" disabled selected hidden>Select Machine</option>
+            <Typography style={{ color:'#43425D', opacity: 0.68}} variant='h2' align='center' gutterBottom><b style={{color:'#43425D'}}>Jobs Data</b></Typography>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+             <FormControl variant='outlined' style={{width: '70%'}}>
+               <InputLabel>Select Machine</InputLabel>
+                <Select label="Select Machine" onChange={handleChange} >
+              
           {
             machines.map(data => (
              
-              <option value={data.id}>{data.title}</option>
+              <MenuItem value={data.id}>{data.title}</MenuItem>
               // <Button style={{color: 'orangered'}} href={`/machine-data/Job/${data.id}/Job`}><LaunchIcon/></Button>
               
             ))
           }
          
-          </select>
+          </Select>
+             </FormControl>
+              
             </div>
             
             <Doughnut data={data}/>

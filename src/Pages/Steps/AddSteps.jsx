@@ -1,4 +1,4 @@
-import { Box, Button, Card, Container, Grid, InputLabel, makeStyles, Select, TextField, Typography } from '@material-ui/core'
+import { Box, Button, Card, Container, FormControl, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core'
 import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom'
 import {useDropzone} from 'react-dropzone';
@@ -98,9 +98,15 @@ const AddSteps = ({match}) => {
     })
   }, [])
   const handleChange = (loadedFiles) => {
+
+   
         let selectedFile = loadedFiles[0]
         
         if (selectedFile) {
+
+          if(type === " " || format === " "){
+            setError("Please Select a Type / Format first to proceed")
+          }
           if(format === 'image'){
              if (types.includes(selectedFile.type)) {
                 setError(null);
@@ -234,41 +240,39 @@ const AddSteps = ({match}) => {
                 style={{marginBottom: '20px'}}
                 
               />
+              <FormControl   style={{marginBottom: '20px'}} fullWidth variant='outlined'>
               <InputLabel>Select Type</InputLabel>
               <Select
-               variant='outlined'
+              label="Select Type"
               value={type}
-                label="Type"
                required
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 onChange={(e) => setType(e.target.value)}
               >
-                <option value='info'>Info</option>
-                 <option value='camera'>Camera</option>
-                  <option value='critical'>Critical</option>
-                   <option value='normal'>Normal</option>
+                <MenuItem value='info'>Info</MenuItem>
+                 <MenuItem value='camera'>Camera</MenuItem>
+                  <MenuItem value='critical'>Critical</MenuItem>
+                   <MenuItem value='normal'>Normal</MenuItem>
               </Select>
-              <br/>
-               <InputLabel>Select Format </InputLabel>
+              </FormControl>
+              <FormControl   style={{marginBottom: '20px'}} fullWidth variant='outlined'>
+          <InputLabel>Select Format </InputLabel>
               <Select
-               variant='outlined'
+             
               value={format}
                 label="Select Format"
                required
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
+                
                 onChange={(e) => setFormat(e.target.value)}
               >
-                <option value='image'>Image</option>
-                 <option value='video'>Video</option>
-                  <option value='audio'>Audio</option>
+                <MenuItem value='image'>Image</MenuItem>
+                 <MenuItem value='video'>Video</MenuItem>
+                  <MenuItem value='audio'>Audio</MenuItem>
                   
               </Select>
+              </FormControl>
+             
+              <br/>
+              
           </Grid>
          
           
@@ -277,7 +281,7 @@ const AddSteps = ({match}) => {
             lg={12}
             sm={12}
             >
-      <Alert severity="warning">Don't leave Media Field empty !</Alert>
+      {error &&  <Alert severity="error">{error}</Alert>}
       <br/>
        <InputLabel variant="contained">Add Media</InputLabel>
        <DropzoneArea
@@ -302,26 +306,29 @@ const AddSteps = ({match}) => {
    
      </div>
 
+       <div style={{display: 'flex', justifyContent: 'center', marginTop: '25px'}}>
          {!loading && <Button
          disabled={progress < 100 || format===""}
             type="submit"
-            fullWidth
+            style={{width: '50%', color: 'white', background: 'orange'}}
             variant="contained"
             color="primary"
-            className={classes.submit}
+            
           >
             Add Step
             </Button>}
          {
            loading && <Button
             type="submit"
-            fullWidth
+            style={{width: '50%', color: 'white', background: 'orange'}}
             variant="contained"
             color="primary"
             disabled
-            className={classes.submit}
+            
           >Adding Step...</Button>
          }   
+       </div>
+         
           </form>
           </div>
           

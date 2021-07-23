@@ -83,7 +83,13 @@ const items = [
     href: '/DQR',
       icon: BuildIcon,
      
-  }
+  },
+  {
+    title: 'Print',
+  href: '/DQR',
+    icon: BuildIcon,
+   
+}
 ];
 
 const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {

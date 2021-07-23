@@ -18,6 +18,7 @@ import { firebaseLooper } from '../../utils/tools'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import LinearIndeterminate from './LinearInderminate';
 import LaunchIcon from '@material-ui/icons/Launch';
+import { NavLink } from 'react-router-dom';
 
 const JobsBox = (props) =>{ 
     const [machines, setMachines] = useState([])
@@ -104,7 +105,7 @@ const JobsBox = (props) =>{
           }
          
           </select>
-      <Button style={{color: '#0C03EB'}} disabled={disabled} href={`/machine-data/Job/${dataId}/Job`}><b>Open</b></Button>
+      <Button component={NavLink} style={{color: '#0C03EB'}} disabled={disabled} to={`/machine-data/Job/${dataId}/Job`}><b>Open</b></Button>
          
       </Box>
 

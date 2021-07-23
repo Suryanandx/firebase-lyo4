@@ -37,9 +37,8 @@ const ManualItem = ({data}) => {
     setLoading(true)
     db.collection('manualData').doc(id).update({title, desc}).then((data) => {
         console.log(data)
-        window.location.reload()
         setLoading(false)
-    })
+    }).then(() => {setOpenEdit(false)})
     
   }
         

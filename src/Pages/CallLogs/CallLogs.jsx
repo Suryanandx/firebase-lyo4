@@ -59,6 +59,9 @@ export default function CallLogs({match}) {
         })
     db.collection('CallLogData').where('machine_id', '==', `${match.params.id}`).onSnapshot(doc => {
       const data = firebaseLooper(doc)
+      data.sort(function(a,b){
+        return(b.time - a.time)
+      })
        setBatch(data)
      console.log(data)
     })

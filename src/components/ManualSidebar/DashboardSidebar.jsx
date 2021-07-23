@@ -109,7 +109,7 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
       <Box m={2} >
         <List>
         
-          <ListItem>
+          <>
           <div className="flex items-center w-full h-12 px-3 mt-2 rounded">
         <ListItem
       disableGutters
@@ -148,7 +148,7 @@ const DashboardSidebar = ({ onMobileClose,match, openMobile }) => {
       </Button>
       </ListItem> 
             </div>
-          </ListItem>
+          </>
           
          
           {items.map((item) => (

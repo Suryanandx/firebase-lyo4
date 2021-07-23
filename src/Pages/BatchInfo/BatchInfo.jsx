@@ -60,7 +60,11 @@ export default function BatchInfo({match}) {
         })
     db.collection('batchReport').where('machine_id', '==', `${match.params.id}`).onSnapshot(doc => {
       const data = firebaseLooper(doc)
+      data.sort(function(a,b){
+        return(b.time - a.time)
+      })
        setBatch(data)
+      
      console.log(data)
     })
     
@@ -119,7 +123,7 @@ export default function BatchInfo({match}) {
               </TableCell>
               <TableCell align="center">{row.user_id}</TableCell>
               <TableCell align="center">{row.time.toDate().toString().substring(0,15)}</TableCell>
-              <TableCell align="center"><img loading="lazy" src={row.url} width={450} height={250}/></TableCell>
+              <TableCell align="right"><img loading="lazy" src={row.url} width={350} height={250}/></TableCell>
               
             </TableRow>
           ))}

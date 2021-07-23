@@ -31,6 +31,7 @@ function DQComponentsView({components, match, module_id}) {
 		.collection('components')
 		.doc(components.id)
 		.update({title, value})
+		.then(() => {setOpen(false)})
 	}
 	function handleDelete(id){
 		db.collection('DQNew')

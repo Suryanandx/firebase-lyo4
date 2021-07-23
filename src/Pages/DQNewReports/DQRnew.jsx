@@ -50,8 +50,12 @@ function DQRnew({match}) {
 	useEffect(() => {
 		db.collection('DQNewReport')
 		.where('mid', '==', `${match.params.id}`)
+    
 		.onSnapshot(snapshot => {
 			const data = firebaseLooper(snapshot)
+      data.sort(function(a,b){
+        return(b.timestamp - a.timestamp)
+      })
 			setReports(data)
 		})
 	}, [])

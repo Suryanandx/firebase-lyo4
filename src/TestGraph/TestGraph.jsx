@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { db } from "../firebase";
 import FetchRecipee from "./FetchRecipee";
 import { firebaseLooper } from "../utils/tools";
-import { Button, Card, FormHelperText, Grid, Input, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { Button, Card, FormControl, FormHelperText, Grid, Input, InputLabel, MenuItem, Select } from "@material-ui/core";
 import GraphSelect from "./GraphSelect";
 import Chartjs from "chart.js";
 
@@ -311,23 +311,30 @@ const TestGraph = () => {
 
   return (
       <Card >
-          <Grid container spacing={3} style={{display: 'flex', justifyContent: 'space-evenly', marginLeft: '3%'}} >
+          <Grid container spacing={3} style={{display: 'flex', justifyContent: 'space-evenly', marginLeft: '3%', marginBottom: '12px', marginTop: '5px'}} >
              
                   <Grid item  lg={3}
             sm={6}
             xl={3}
             xs={12} >
-                      <Select
+                 <FormControl className='form-select mt-1 block w-full'  fullWidth variant="outlined">
+                 <InputLabel id="demo-simple-select-outlined-label">Select Machine</InputLabel>
+                     <Select
+                     label='Select Machine'
                      
-                      className='form-select mt-1 block w-full' style={{ border: '2px solid whitesmoke'}}  fullWidth variant='outlined' onChange={handleSetChange} >
-                          
+                    onChange={handleSetChange} >
+                           <MenuItem value="">
+                          <em>None</em>
+                         </MenuItem>
                     {
                         machines.map(data => (
-                            <option value={data.id}>{data.title}</option>
+                            <MenuItem value={data.id}>{data.title}</MenuItem>
                         ))
                     } 
                     </Select>
-                    <FormHelperText>Select Machine</FormHelperText>
+                    
+                 </FormControl>
+                    
                   </Grid>
                     
      
@@ -336,31 +343,38 @@ const TestGraph = () => {
             sm={6}
             xl={3}
             xs={12} >
-                  
-                   <Select className='form-select mt-1 block w-full' style={{ border: '2px solid whitesmoke'}} variant='outlined'  fullWidth onChange={handleChange} >
+                  <FormControl className='form-select mt-1 block w-full'  fullWidth variant="outlined">
+                  <InputLabel id="demo-simple-select-outlined-label">Select Recipes</InputLabel>
+                   <Select label="Select Recipes"  variant='outlined'  fullWidth onChange={handleChange} >
                        
                     {
                         recipes.map(data => (
-                            <option value={data.id}>{data.title}</option>
+                            <MenuItem value={data.id}>{data.title}</MenuItem>
                         ))
                     } 
                     </Select>
-                    <FormHelperText>Select Recipes</FormHelperText>
+                  </FormControl>
+                  
+                  
+                    
               </Grid>
               <Grid item lg={3}
             sm={6}
             xl={3}
             xs={12}>
-                  
-                   <Select className='form-select mt-1 block w-full' style={{ border: '2px solid whitesmoke'}}  fullWidth variant='outlined' onChange={(e) => {handleBatchChange(e) }}>
+                  <FormControl className='form-select mt-1 block w-full'  fullWidth variant="outlined">
+                  <InputLabel id="demo-simple-select-outlined-label">Select Batch</InputLabel>
+                   <Select label='Select Batch'  fullWidth variant='outlined' onChange={(e) => {handleBatchChange(e) }}>
                       
                     {
                         batch.map(data => (
-                            <option value={data.time}>{data.time}</option>
+                            <MenuItem value={data.time}>{data.time}</MenuItem>
                         ))
                     } 
                     </Select>
-                    <FormHelperText>Select Batch</FormHelperText>
+                  </FormControl>
+                  
+                  
               </Grid>
               <Grid 
               item lg={3}

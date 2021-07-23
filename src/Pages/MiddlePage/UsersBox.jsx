@@ -11,6 +11,7 @@ import { green } from '@material-ui/core/colors';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { db } from '../../firebase';
 import { firebaseLooper } from '../../utils/tools';
 
@@ -76,7 +77,7 @@ const UsersBox = (props) =>{
           color="textSecondary"
           variant="caption"
         >
-        <Button  style={{color: "#0C03EB"}}  href="/users"><b>Open</b> </Button>
+        <Button component={NavLink}  style={{color: "#0C03EB"}}  to="/users"><b>Open</b> </Button>
 
         </Typography>
       </Box>

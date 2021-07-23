@@ -31,6 +31,7 @@ function DQSpecsView({specs, match}) {
 		.collection('specDetails')
 		.doc(specs.id)
 		.update({desc})
+		.then(() => {setOpen(false)})
 	}
 	function handleDelete(id){
 		db.collection('DQNew')

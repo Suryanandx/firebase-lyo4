@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useHistory } from 'react-router-dom';
 import Alert from '@material-ui/lab/Alert';
-import { FormHelperText, Select } from '@material-ui/core';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { useAuth } from "../context/AuthContext"
 import {db} from '../../firebase'
 import LogIn from '../LogIn/LogIn';
@@ -230,28 +230,26 @@ export default function AddUser() {
             </Grid>
 
             <Grid item xs={12}>
-             
-        <Select
-        fullWidth
-        variant="outlined"
-          native
+            <FormControl required className='form-select mt-1 block w-full'  fullWidth variant="outlined">
+            <InputLabel id="demo-simple-select-outlined-label">Select Role</InputLabel>
+                <Select
+           label="Select Role"
           value={role}
-          required
+         
           onChange={(e)=> setRole(e.target.value)}
-          inputProps={{
-            name: 'age',
-            id: 'age-native-simple',
-          }}
+          
         >
-          <option aria-label="None" value="" />
-          <option value="Admin">Admin</option>
-          <option value="Trainee">Trainee</option>
-            <option value="Operator">Operator</option>
-          <option value="Supervisor">Supervisor</option>
-          <option value="Validator">Validator</option>
-           <option value="Maintenance">Maintenance</option>
+         
+          <MenuItem value="Admin">Admin</MenuItem>
+          <MenuItem value="Trainee">Trainee</MenuItem>
+            <MenuItem value="Operator">Operator</MenuItem>
+          <MenuItem value="Supervisor">Supervisor</MenuItem>
+          <MenuItem value="Validator">Validator</MenuItem>
+           <MenuItem value="Maintenance">Maintenance</MenuItem>
         </Select>
-        <FormHelperText>Role</FormHelperText>
+            </FormControl>
+      
+       
             </Grid>
            
           </Grid>

@@ -76,7 +76,7 @@ const StepItem = ({ data})  => {
                 setFile(selectedFile);
             } else {
                 setFile(null);
-                setError("Please select an audi file (mp3 )");
+                setError("Please select an audio file (mp3 )");
             }
           }
            
@@ -85,17 +85,17 @@ const StepItem = ({ data})  => {
           const { progress, url } = useStepStorage(file);
 
           function getMedia(){
-            if (format === 'image'){
+            if (data.format === 'image'){
               return <img className="h-64 bg-cover lg:rounded-lg lg:h-full"  src={data.url}/>
-            }else if(format === 'video'){
+            }else if(data.format === 'video'){
               return  (
                 <div className="h-64 bg-cover lg:rounded-lg lg:h-full">
-                  <video  controls>
+                  <video style={{width: '100%', height: 'auto'}}  controls>
                 <source src={data.url}/>
               </video>
                 </div>
               )
-            }else if(format === 'audio'){
+            }else if(data.format === 'audio'){
 
               return (
               <div className="h-64 bg-cover lg:rounded-lg lg:h-full">
@@ -265,6 +265,7 @@ const updateStep=(id) => {
                     <DialogContent>
                  
                     <form className={classes.form}  >
+                      {error && <Alert severity='error'>{error}</Alert>}
                         <TextField
                        
                         defaultValue={title}                       
@@ -322,6 +323,7 @@ const updateStep=(id) => {
                               <option value='audio'>Audio</option>
                              
                           </Select>
+                          
                           {getMedia()}
                          <Alert>To Update Media Click <b>'Update Media'</b> After uploading a new Media file</Alert>
                         <InputLabel>Replace the current Media file</InputLabel>

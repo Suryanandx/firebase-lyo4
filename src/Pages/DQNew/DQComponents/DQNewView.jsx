@@ -31,7 +31,7 @@ function DQNewView({report}) {
    db.collection('DQNew').doc(id).delete()
  }
   function handleSubmit(){
-    db.collection('DQNew').doc(report.id).update({name, desc})
+    db.collection('DQNew').doc(report.id).update({name, desc}).then(() => {setOpen(false)})
   }
 	console.log(report)
 	return (

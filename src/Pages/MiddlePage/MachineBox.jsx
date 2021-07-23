@@ -13,6 +13,7 @@ import { red } from '@material-ui/core/colors';
 import { useEffect, useState } from 'react';
 import { firebaseLooper } from '../../utils/tools';
 import { db } from '../../firebase';
+import { NavLink } from 'react-router-dom';
 
 const MachineBox = (props) =>{ 
     const [machines, setMachines] = useState([])
@@ -73,7 +74,7 @@ const MachineBox = (props) =>{
       >
        
         
-       <Button  style={{color: "#0C03EB"}} href="/machine-data"> <b>Open</b></Button>
+       <Button component={NavLink}  style={{color: "#0C03EB"}} to="/machine-data"> <b>Open</b></Button>
         
       </Box>
       </div>

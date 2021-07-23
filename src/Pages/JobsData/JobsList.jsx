@@ -63,6 +63,9 @@ export default function JobsList({match}) {
         })
         db.collection('jobData').where('mid', '==', `${match.params.id}`).onSnapshot(doc => {
             const data = firebaseLooper(doc)
+            data.sort(function(a,b){
+              return(b.date - a.date)
+            })
             setJob(data)
         })
     }, [])
@@ -74,6 +77,9 @@ export default function JobsList({match}) {
     db.collection('jobData').where('mid', '==', `${match.params.id}`)
     .where('date', '==', `${jobDate}`).onSnapshot(doc => {
             const data = firebaseLooper(doc)
+            data.sort(function(a,b){
+              return(b.date - a.date)
+            })
             setJob(data)
         })
   }

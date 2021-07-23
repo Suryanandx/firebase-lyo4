@@ -137,12 +137,16 @@ const Steps = ({match}) => {
     />
     :
     data.format === 'video'?
-    <video
-    style={{ width: '90%', marginTop: '20px'}}
+    <div>
+       <video
+    style={{width: '100%', height: 'auto', marginTop: '20px', objectFit: 'fill'}}
+   
     controls
       src={data.url}
       alt="First slide"
     />
+    </div>
+   
     :  data.format === 'audio'?
     
         <audio style={{ margin: '30%', marginTop: '5%', marginBottom: '20%'}}  controls src={data.url}/>

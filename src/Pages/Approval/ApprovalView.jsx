@@ -76,13 +76,13 @@ function ApprovalView({data, match}) {
 			<TableCell align="left"><img src={data.url} width='350px' height='250px'/></TableCell>
 			<TableCell align="left">{data.timestamp.toDate().toString().substring(0,15)}</TableCell>
 		
-			<TableCell align="right">
+			{/* <TableCell align="right">
 					<div>
 					<Button  onClick={handleOpen}><EditIcon className='animate-bounce'/></Button>
 					<Button onClick={handleOpenDel}><DeleteIcon className='hover:text-red-600'/></Button>
 					
 				</div>
-			</TableCell>
+			</TableCell> */}
 			</TableRow>
 		
 			</TableBody>

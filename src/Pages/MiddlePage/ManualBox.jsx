@@ -16,6 +16,7 @@ import { db } from '../../firebase';
 import { firebaseLooper } from '../../utils/tools';
 import LaunchIcon from '@material-ui/icons/Launch';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import { NavLink } from 'react-router-dom';
 const ManualBox = (props) =>{ 
     const [machines, setMachines] = useState([])
     const [manuals, setManuals] = useState([])
@@ -95,7 +96,7 @@ const ManualBox = (props) =>{
             ))
           }
           </select>
-        <Button style={{color: '#0C03EB'}} disabled={disabled} href={`/machine-data/Manuals/${dataId}/Manuals`}><b>Open</b></Button>
+        <Button style={{color: '#0C03EB'}} disabled={disabled} component={NavLink} to={`/machine-data/Manuals/${dataId}/Manuals`}><b>Open</b></Button>
       </Box>
       </div>
       

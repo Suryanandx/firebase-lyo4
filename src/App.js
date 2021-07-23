@@ -82,6 +82,7 @@ import DQRSafety from "./Pages/DQNewReports/DQRSafety";
 import DQRSpecsd from "./Pages/DQNewReports/DQRSpecsd";
 import DQRAttachments from "./Pages/DQNewReports/DQRAttachments";
 import DQRApproval from "./Pages/DQNewReports/DQRApproval";
+import PrintScreen from "./Pages/printComponent/PrintScreen";
 
 function App() {
 
@@ -159,6 +160,7 @@ function App() {
                    <AppRoute path='/DQR/:id/Attachments' exact component={DQRAttachments} layout={MainLayout} />
                  <AppRoute path='/DQ/:id/Abbreviations' exact component={Abbreviations} layout={MainLayout} />
                  <AppRoute path='/DQR/:id/Safety' exact component={DQRSafety} layout={MainLayout} />
+                 <AppRoute path='/DQR/:id/Print' exact component={PrintScreen} layout={MainLayout} />
       </Switch>
     </Router>
     </BrowserRouter>
