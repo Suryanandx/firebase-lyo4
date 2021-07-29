@@ -164,7 +164,7 @@ const MiddlePage = () =>{
  function handleEnd({ steps, values }) {
     // console.log(steps);
     // console.log(values);
-  history.push(`/machine-data/DQ-Reports/${values[1]}/DQ-Reports`)
+  history.push(`/machine-data/${values[1]}/DQ-New-Reports`)
   }
 
   const getOptions = (previousValue) => {
@@ -324,17 +324,17 @@ const MiddlePage = () =>{
       {
         id: '4',
        component: <DQtable/>,
-       asMessage: true
+       asMessage: false
       
       },
       {
         id: '5',
-       message: 'Redirecting to Reports Page ....',
+       message: 'Redirecting to Reports Page ',
         trigger: '6'
       },
       {
         id: '6',
-       message: '....',
+       message: 'Thanks',
         end: true
       },
      

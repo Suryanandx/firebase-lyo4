@@ -84,25 +84,24 @@ function SpecDetails({match, tid}) {
                     <>
                      <div>
                        { getResponse(data.response)}
-                    </div>
-					<div style={{display: 'flex', justifyContent: 'space-between'}}>
-						<p className='text-2xl mr-3'>⦿</p>
-						<TextField className='mb-5' variant='outlined' fullWidth key={data.id} defaultValue={data.desc} onChange={handleChange(data.id,data.desc)}/>
-                        
-						<IconButton onClick={(e) =>handleDelete(data.id)}><DeleteSweepIcon className='hover:text-red-600' /></IconButton>
-					</div>
-                    {data.issue_id !== ""? <Button style={{background: 'orange', color: 'white'}} onClick={(e) => {
+					   {data.issue_id !== ""? <Button style={{marginLeft: '20px', color: 'orange'}} onClick={(e) => {
                   handleOpen(e);
                   handleComment(data.issue_id)
                 }}>Check</Button> : <p></p>}
+                    </div>
+					<div style={{display: 'flex', justifyContent: 'space-between'}}>
+						<p className='text-2xl mr-3'>⦿</p>
+						<TextField className='mb-5' variant='outlined' disabled multiline fullWidth key={data.id} defaultValue={data.desc} onChange={handleChange(data.id,data.desc)}/>
+                        </div>
+                  
 					</>
 				))
 			
 			} 
-			<div className='p-10' style={{display: 'flex', justifyContent: 'space-evenly'}}>
+			{/* <div className='p-10' style={{display: 'flex', justifyContent: 'space-evenly'}}>
 				<TextField className='mr-5 mb-10'  variant='outlined' fullWidth  label='Add new Data' onChange={(e) => setDesc(e.target.value)}/>
 				<Button onClick={handleSubmit} disabled={desc===''} style={{color: 'orange'}} >Add </Button>
-			</div>
+			</div> */}
 			<Dialog fullWidth onClose={handleClose} open={open}>
       <Toolbar>
         <Button onClick={handleClose}>Close</Button>

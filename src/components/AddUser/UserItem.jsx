@@ -86,19 +86,9 @@ export default function UserItem({ users}) {
 }
 
 const updateUser=(id) => {
-   
   
-    if(phone.length < 10 || phone.length > 10){
-      setError("Phone number's length should be only 10 digits")
-    }else {
        const updatedUser = {firstName,lastName,phone,role,email,password}
-       db.collection('users').doc(id).update(updatedUser).then(() => {
-      setLoading(false)
-      history.push('/users')
-      
-    })
-    }
-    
+       db.collection('users').doc(id).update(updatedUser)
     
   }
   
@@ -227,6 +217,7 @@ const updateUser=(id) => {
                         <TextField
                         value={phone}
                           variant="outlined"
+                          error={phone.length <10 || phone.length > 10}
                           required
                           fullWidth
                           name="password"
@@ -262,15 +253,17 @@ const updateUser=(id) => {
                       </Grid>
                       
                     </Grid>
-                    {error && <Alert severity='error'>{error}</Alert>}
+                 
                     <DialogActions>
                       <Button color="secondary" onClick={handleEditClose}>Close</Button>
                     <Button
-                          type="submit"
+                          
                           variant="outlined"
                           color="primary"
-                          onClick={(e)=> {updateUser(users.id)
-                            handleEditClose(e)}
+                        disabled={phone.length <10 || phone.length > 10}
+                          onClick={(e)=> {updateUser(users.id);
+                            handleEditClose()
+                            }
                           }
                         >
                           Update

@@ -131,7 +131,7 @@ const Steps = ({match}) => {
     </>
    { data.format === 'image'?
    <img
-      className="d-block w-100"
+   style={{width: '100%', height: '75vh'}}
       src={data.url}
       alt="First slide"
     />

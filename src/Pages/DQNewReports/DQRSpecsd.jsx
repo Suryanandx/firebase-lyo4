@@ -82,16 +82,12 @@ function DQRSpecsd({match}) {
           <Card className={classes.content}>
 		<div>
 			<Typography variant='h1' align='center' gutterBottom >Design Specifications</Typography>
-			<Toolbar style={{display: 'flex', justifyContent: 'space-between', marginBottom: '30px'}}>
-				<TextField className='mr-5' label='Add new Specification' variant='outlined' fullWidth value={title} onChange={(e) => setTitle(e.target.value)} />
-				<Button onClick={handleSubmit} disabled={title===''}>Submit</Button>
-			</Toolbar>
+			
 			{
 				titles.map(data => (
 					<div key={data.id}>
 						<div style={{display: 'flex', justifyContent: 'space-between'}}>
-							<Typography variant='h4' align='left' style={{paddingLeft: '30px'}} ><b>{data.title}</b> </Typography>
-							<IconButton onClick={(e) =>handleDelete(data.id)}><DeleteSweepIcon className='hover:text-red-600' /></IconButton>
+							<Typography variant='h4'  align='left' style={{paddingLeft: '30px'}} ><b>{data.title}</b> </Typography>
 						</div>
 						
 						<br />

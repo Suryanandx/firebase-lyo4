@@ -214,9 +214,12 @@ const updateStep=(id) => {
       <div class="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-yellow-800 text-white relative z-10 title-font font-medium text-sm">{data.index + 1}</div>
       <div class="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
         {getType()}
-        <div class="flex-grow sm:pl-6 mt-6 sm:mt-0">
+        <div class="w-1/2 flex-grow sm:pl-6 mt-6 sm:mt-0">
           <h2 class="font-medium title-font text-gray-900 mb-1 text-xl">{data.title}</h2>
-          <p class="leading-relaxed">{data.desc}</p>
+          <div className='w-64 truncate'>
+            <Typography className='' >{data.desc?.slice(0,150)}...</Typography>
+          </div>
+          
         </div>
         <Button startIcon={<EditIcon/>}  onClick={handleEdit}  color="primary"></Button>
             <Button startIcon={<VisibilityIcon/>} 
