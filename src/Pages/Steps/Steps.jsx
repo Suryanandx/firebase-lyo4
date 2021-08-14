@@ -1,4 +1,4 @@
-import { Button, Card, Container, makeStyles, Switch, Typography } from '@material-ui/core';
+import { Button, Card, Container, Dialog, DialogContent, makeStyles, Switch, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import StepItem from './StepItem';
 import {Link, useHistory} from 'react-router-dom';
@@ -11,6 +11,7 @@ import ManualDashboardLayout from '../../components/ManualSidebar/ManualDashboar
 import OutlinedTimeline from './Timeline';
 import StepCarousel from './StepCarousel';
 import Carousel from 'react-bootstrap/Carousel'
+import AddSteps from './AddSteps';
 const useStyles = makeStyles((theme) =>( {
     add: {
      
@@ -56,6 +57,7 @@ const Steps = ({match}) => {
      const [mTitle, setMTitle] = useState('')
     const [steps, setSteps] = useState([{}])
     const [checked, setChecked] = useState(true)
+    const [open, setOpen] = useState(false)
     const dbRef =   db.collection('stepData').where('manual_id', '==', `${match.params.id}`)
 
     const handleReturn = () => {
@@ -97,7 +99,7 @@ const Steps = ({match}) => {
                          <b>SWITCH MODE</b>
                     <Switch onChange={(e) => setChecked(!checked)} checked={checked} color='primary'/> 
                     </div>
-                   
+                   <Button onClick={() => setOpen(!open)}>Add Steps</Button>
                 </div>
              
               { 
@@ -167,7 +169,12 @@ const Steps = ({match}) => {
      
                 
           </Card>
-         
+         <Dialog open={open} onClose={() => setOpen(false)}>
+           <DialogContent>
+ <AddSteps match={match}/>
+           </DialogContent>
+             
+         </Dialog>
         </div>
       </div>
            

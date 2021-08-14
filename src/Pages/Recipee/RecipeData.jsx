@@ -6,7 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, FormHelperText, TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { db } from '../../firebase';
 import { Alert, AlertTitle } from '@material-ui/lab';
@@ -121,7 +121,7 @@ export default function RecipeData({rows, length, match}) {
                           autoFocus
                           onChange={(e) => setTitle(e.target.value)}
                         />
-                    
+                    <FormHelperText>Title should be max {title.length}/40</FormHelperText>
                     <DialogActions>
                       <Button color="secondary" onClick={handleEditClose}>Cancel</Button>
                        {!loading && <Button
@@ -129,7 +129,7 @@ export default function RecipeData({rows, length, match}) {
                           fullWidth
                           variant="outlined"
                           color="primary"
-                         
+                         disabled={title=== "" || title.length > 40}
                           onClick={(e)=>{ 
                             updateRecipe(rows.id);
                             handleEditClose();

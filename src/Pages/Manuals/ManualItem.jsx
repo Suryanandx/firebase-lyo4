@@ -148,7 +148,7 @@ const ManualItem = ({data}) => {
                           fullWidth
                           variant="outlined"
                           color="primary"
-                         
+                          disabled={title==="" || desc==="" || desc.length > 300 || title.length > 35} 
                           onClick={(e)=> updateManual(data.id)}
                         >
                           Update

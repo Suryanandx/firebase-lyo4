@@ -33,20 +33,19 @@ const AddMaterial = ({match}) => {
               { message &&<Typography variant='h6' align='center'><b style={{color: 'blue'}}>{message}</b></Typography> }
               <div class="relative pt-4">
                 <label for="name" class="text-base leading-7 text-gray-500">Name</label>
-                <input error={name.length > 40|| name === ""} onChange={(e) => setName(e.target.value)} type="text"  placeholder="Enter Name" class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-blueGray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"/>
+                <input style={{marginBottom: '25px'}} error={name.length > 40} onChange={(e) => setName(e.target.value)} type="text"  placeholder="Enter Name" class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-blueGray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"/>
+                <FormHelperText>Description must be {name.length}/40 characters maximum</FormHelperText>
+
               </div>
               
-             
-              <div class="flex flex-wrap mb-6 -mx-3">
-                <div class="w-full px-3">
-                  <label class="text-base leading-7 text-gray-500" for="description"> Description </label>
-                  <TextField error={desc > 300 } multiLine onChange={(e) => setDesc(e.target.value)} class="w-full h-32 px-4 py-2 text-base text-gray-500 transition duration-500 ease-in-out transform bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 apearance-none autoexpand" id="description" type="text" name="description" placeholder="Describe your material...." required=""></TextField>
-                </div>
-              </div>
+                 
+                  <TextField error={desc > 300 } label="Description" fullWidth rows={5} variant="outlined" multiline onChange={(e) => setDesc(e.target.value)} />
+              
+              
               <FormHelperText>Description must be {desc.length}/300 characters maximum</FormHelperText>
               
               <div class="flex items-center w-full pt-4">
-                <Button disabled={name === '' || desc === ''} fullWidth style={{background: 'orange', color: 'white'}} onClick={handleSubmit} > Add New  </Button>
+                <Button disabled={name === '' || desc === '' || desc>300 || name > 40} fullWidth style={{background: 'orange', color: 'white'}} onClick={handleSubmit} > Add New  </Button>
               </div>
             </form>
           </div>

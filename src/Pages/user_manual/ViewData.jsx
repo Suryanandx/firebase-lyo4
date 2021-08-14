@@ -1,7 +1,16 @@
 import { useState } from "react"
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import { db } from "../../firebase";
+import { Button } from "@material-ui/core";
 
-function ViewData({title,desc,url}) {
+function ViewData({title,desc,images,d_id}) {
     const [show, setShow] = useState(false)
+    console.log(images)
+
+    function handleDelete(){
+        db.collection('userManual').doc(d_id).delete()
+    }
     return (
         <div className="bg-white w-full xl:w-11/12 mt-5 px-6 py-8 xl:px-16 lg:py-16 shadow-lg">
         <div className="flex w-full justify-between lg:justify-start items-center">
@@ -23,9 +32,23 @@ function ViewData({title,desc,url}) {
         </div>
         {show && (
             <div>
-                <img src={url} alt="Req Img here " />
+               <Carousel>
+                   {
+                       images.map((data) => (
+                             <div>
+                    <img src={data} />
+                   
+                </div>
+                       ))
+                   }
+               
+               
+            </Carousel>
             </div>
         )}
+        <div>
+            <Button onClick={handleDelete}>delete</Button>
+        </div>
     </div>
     )
 }

@@ -1,3 +1,4 @@
+import { TextField } from "@material-ui/core"
 import { Button, Card,Toolbar, makeStyles,Dialog,DialogContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow , Typography} from "@material-ui/core"
 import { useEffect, useState } from "react"
 import { db } from "../../firebase"
@@ -7,6 +8,7 @@ function DQRComponents({match, moduleId,type}) {
 	const [reports, setReports] = useState([])
 	const [open, setOpen] = useState(false)
 	const [issuecomment, setIssueComment] = useState('')
+	const [activeId, setActiveId] = useState('')
 
 	function handleOpen(){
 		setOpen(true)
@@ -35,6 +37,14 @@ function DQRComponents({match, moduleId,type}) {
     })
 
 }
+
+function activateId(id){
+	setActiveId(id)
+}
+	function handleCommentChange(id){
+		db.collection('issueData').doc(id).update({content: issuecomment})
+	}
+
 	function getResponse(res) {
 		if(res === 1){
 			return(
@@ -87,6 +97,7 @@ function DQRComponents({match, moduleId,type}) {
 			 {row.issue_id !== ""? <Button style={{background: 'orange', color: 'white'}} onClick={(e) => {
                   handleOpen(e);
                   handleComment(row.issue_id)
+				  activateId(row.issue_id)
                 }}>Check</Button> : <p>N/A</p>}
 		  </TableCell>
             </TableRow>
@@ -126,7 +137,8 @@ function DQRComponents({match, moduleId,type}) {
              <TableCell align="right">
 			 {row.issue_id !== ""? <Button style={{background: 'orange', color: 'white'}} onClick={(e) => {
                   handleOpen(e);
-                  handleComment(row.issue_id)
+                  handleComment(row.issue_id);
+				  activateId(row.issue_id)
                 }}>Check</Button> : <p>N/A</p>}
 		  </TableCell>
             </TableRow>
@@ -139,7 +151,8 @@ function DQRComponents({match, moduleId,type}) {
         <Button onClick={handleClose}>Close</Button>
       </Toolbar>
               <b className='text-xl underline text-bold text-center mb-3'>Comment</b>
-              <p className='text-xl text-blue-gray-500 text-center'>{issuecomment}</p>
+              <TextField variant='outlined' onChange={(e) => setIssueComment(e.target.value)} value={issuecomment} className='text-xl text-blue-gray-500 text-center'/>
+			  <Button onClick={(e) => {handleCommentChange(activeId); handleClose()}}>Update</Button>
     </Dialog>
 		</div>
 		

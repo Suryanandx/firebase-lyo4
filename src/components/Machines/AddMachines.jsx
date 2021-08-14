@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Container, makeStyles, TextField, Typography } from '@material-ui/core'
+import { Button, Card, CardContent, Container, FormHelperText, makeStyles, TextField, Typography } from '@material-ui/core'
 import Alert from '@material-ui/lab/Alert';
 import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom'
@@ -76,7 +76,7 @@ const AddMachines = () => {
             <Typography component="h1" variant="h4">
           Add Machine
         </Typography>
-        <form className={classes.form} >
+        <form onSubmit={handleSubmit} className={classes.form} >
           <Card >
             <CardContent>
 
@@ -94,6 +94,7 @@ const AddMachines = () => {
             autoFocus
             onChange={(e) => setMachineName(e.target.value)}
           />
+          <FormHelperText>Title should be max 35 Char</FormHelperText>
           <TextField
           value={location}
             variant="outlined"
@@ -105,8 +106,9 @@ const AddMachines = () => {
             label="Location"
             onChange={(e) => setMachineLocation(e.target.value)}
             id="machine_location"
-            style={{marginBottom:"20px"}}
+            
           />
+          <FormHelperText style={{marginBottom:"20px"}}>Location should be max 40 char long</FormHelperText>
           
            <TextField
            fullWidth
@@ -132,12 +134,12 @@ const AddMachines = () => {
             onChange ={(e) => setDesc(e.target.value)}
            
           />
-          
+          <FormHelperText>Description should be min {desc.length}/150</FormHelperText>
          {!loading && <Button
             type="submit"
-            onClick={handleSubmit}
+            
             variant="contained"
-            disabled={title ===  "" || desc === "" || location === "" || title.length < 6 || location.length < 6 || location.length> 40 ||title.length> 35}
+           
             className={classes.submit}
           >
             Add  Machine

@@ -75,7 +75,8 @@ function Attachments({match}) {
 		setOpen(false)
 	}
 	
-	function handleSubmit(){
+	function handleSubmit(e){
+		e.preventDefault()
 		const index = contents.length
 		db.collection('DQNew').doc(match.params.id)
 		.collection('content').doc('attachments')
@@ -119,11 +120,12 @@ function Attachments({match}) {
 		</Table>
 		</TableContainer>
 		<Dialog open={open} onClose={handleClose} fullWidth>
-	<Typography variant='h3' align='center' gutterBottom><b>Add new items</b></Typography>
+			<form onSubmit={handleSubmit}>
+				<Typography variant='h3' align='center' gutterBottom><b>Add new items</b></Typography>
 	<DialogContent>
-		<TextField multiLine rows={7} variant='outlined' label='Desctiption' fullWidth onChange={(e) => setDesc(e.target.value)}/>	
-		<TextField style={{marginBottom: '3%'}} variant='outlined' label='Drawing Number' fullWidth onChange={(e) => setDno(e.target.value)}/>
-		<TextField multiLine rows={7} variant='outlined' label='Revision Number' fullWidth onChange={(e) => setRev(e.target.value)}/>	
+		<TextField style={{marginBottom: '3%'}} required multiLine rows={7} variant='outlined' label='Desctiption' fullWidth onChange={(e) => setDesc(e.target.value)}/>	
+		<TextField required style={{marginBottom: '3%'}} variant='outlined' label='Drawing Number' fullWidth onChange={(e) => setDno(e.target.value)}/>
+		<TextField required multiLine rows={7} variant='outlined' label='Revision Number' fullWidth onChange={(e) => setRev(e.target.value)}/>	
 		{/* <Select style={{marginBottom: '3%'}} variant='outlined'  fullWidth onChange={(e) => setType(e.target.value)}>
 			<option className='capitalize' value={0}>Documentation</option>
 			<option value={1}>ACCESSORIES</option>
@@ -132,8 +134,11 @@ function Attachments({match}) {
 	</DialogContent>
 	<DialogActions>
 		<Button color='secondary' onClick={handleClose} variant='contained'>Cancel</Button>
-		<Button disabled={ desc==='' || rev ===''} onClick={handleSubmit} style={{background: 'orange', color: 'white'}}>Add New</Button>
+		<Button type="submit"   style={{background: 'orange', color: 'white'}}>Add New</Button>
 	</DialogActions>
+			</form>
+	
+
 </Dialog>
 		</div>
           </Card>

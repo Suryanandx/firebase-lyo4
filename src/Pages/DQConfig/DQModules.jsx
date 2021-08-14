@@ -115,7 +115,8 @@ function DQConfig({match, modules}) {
 		.update({title, desc})
 	}
 
-	function handleSubmit(){
+	function handleSubmit(e){
+		e.preventDefault()
 		db.collection('DQNew')
 		.doc(match.params.id)
 		.collection('content')
@@ -153,7 +154,8 @@ function DQConfig({match, modules}) {
 		})
 	}, [])
 
-	function handleSubmitNew(){
+	function handleSubmitNew(e){
+		e.preventDefault()
 		db.collection('DQNew')
 		.doc(match.params.id)
 		.collection('content')
@@ -236,12 +238,12 @@ function DQConfig({match, modules}) {
 		</div>
 		: 
 		<div>
-			< >
+			<form onSubmit={handleSubmitNew}>
 			<Typography variant='h1' align='center'>Add New Configuration details</Typography>
 		<TextField style={{marginBottom: '20px'}} label='Title'  variant='outlined' fullWidth onChange={(e) => setName(e.target.value)}/>
 		<TextField multiline rows={7} label='Description'  variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
-		<Button fullWidth style={{background: 'orange', color: 'white', marginTop: '5%'}} onClick={handleSubmitNew}>Add New</Button>
-	  </>
+		<Button fullWidth style={{background: 'orange', color: 'white', marginTop: '5%'}} >Add New</Button>
+	  </form>
 		</div>
 		}
           </Card>
@@ -252,8 +254,8 @@ function DQConfig({match, modules}) {
   
       </>
 		<Dialog open={openAdd} fullWidth onClose={handleCloseAdd}>
-
-          <Typography variant='h4' align='center'  ><b>Add New Modules</b></Typography>
+		<form onSubmit={handleSubmit}>
+			    <Typography variant='h4' align='center'  ><b>Add New Modules</b></Typography>
 	  <DialogContent>
 		<TextField style={{marginBottom: '5%'}} label='Title'  variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
 		<TextField rows={7} multiLine label='Description' variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
@@ -261,9 +263,11 @@ function DQConfig({match, modules}) {
 	  </DialogContent>
 	  <DialogActions>
 		  <Button onClick={handleCloseAdd} variant='contained' color='secondary'>Cancel</Button>
-		  <Button style={{background:'orange', color:'white'}} onClick={handleSubmit}>Add New</Button>
+		  <Button type="submit" style={{background:'orange', color:'white'}} >Add New</Button>
 	  </DialogActions>
           
+		</form>
+      
       </Dialog>
     
 		</>

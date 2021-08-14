@@ -103,7 +103,7 @@ function ApprovalView({data, match}) {
 				
 			<DialogActions>
 				<Button onClick={handleClose}>Cancel</Button>
-				<Button onClick={handleUpdate} style={{backgroundColor: 'orange', color: 'whitesmoke'}}>Update</Button>
+				<Button disabled={name === '' } onClick={handleUpdate} style={{backgroundColor: 'orange', color: 'whitesmoke'}}>Update</Button>
 			</DialogActions>
 			</Dialog>
 			{/* Open delete dialog */}

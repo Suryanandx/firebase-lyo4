@@ -153,7 +153,7 @@ function DQPurpose({match}) {
 		   <Typography variant='h1' align='center' gutterBottom><b>Add New Purpose</b></Typography>	
 		<TextField style={{marginBottom: '20px'}} label='Title' variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
 		<TextField style={{marginBottom: '5%'}} label='Description' multiLine rows={7}  variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
-		<Button fullWidth style={{background: 'orange', color: 'white'}} onClick={handleSubmit}>Add New</Button>
+		<Button disabled={title === '' || desc === '' || desc>300 || title> 35} fullWidth style={{background: 'orange', color: 'white'}} onClick={handleSubmit}>Add New</Button>
 	  </div>
           </Card>
         </div>

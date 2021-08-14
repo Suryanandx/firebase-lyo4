@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, FormHelperText, makeStyles, TextField, Typography } from '@material-ui/core';
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import ContentDashboardLayout from '../../components/ContentSidebar/ContentDashboardLayout';
@@ -75,6 +75,7 @@ const AddRecipe = ({match}) => {
                     error={title === "" || title.length > 40}
                         onChange={(e) => setTitle(e.target.value)}
                     />
+                    <FormHelperText>Title legth should be maximum {title.length}/40</FormHelperText>
                     <TextField 
                     variant="outlined"
                     margin="normal"
@@ -85,7 +86,7 @@ const AddRecipe = ({match}) => {
                         onChange={(e) => setMid(e.target.value)}
                     />
                 <CardActions>
-                    <Button fullWidth variant='outlined' color="primary" onClick={handleSubmit}>Add New Recipe</Button>
+                    <Button disabled={title === "" || title.length > 40} fullWidth variant='outlined' color="primary" onClick={handleSubmit}>Add New Recipe</Button>
                  </CardActions>
               
                 </form> 

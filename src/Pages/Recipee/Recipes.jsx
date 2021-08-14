@@ -11,6 +11,7 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import PropTypes from 'prop-types';
 import ContentDashboardLayout from '../../components/ContentSidebar/ContentDashboardLayout';
 import { Autocomplete } from '@material-ui/lab';
+import { NavLink } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -170,7 +171,7 @@ const Recipes = ({match}) => {
                  <input style={{ border: '2px solid whitesmoke'}} onChange={(e) => setSearchTerm(e.target.value)} type="text" className="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search Recipes..."/>
                   <div className="absolute top-4 right-3"> <i className="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i> </div>
               </div>
-                    <Button style={{width: '15%', marginLeft: '4%', marginRight: '3%', backgroundColor: 'orange', color: 'white'}}  href={`/machine-data/Reports/${match.params.id}/Add-Recipes`}>ADD New </Button>
+                    <Button style={{width: '15%', marginLeft: '4%', marginRight: '3%', backgroundColor: 'orange', color: 'white'}} component={NavLink} to={`/machine-data/Reports/${match.params.id}/Add-Recipes`}>ADD New </Button>
             
             <hr/>
               </div>
@@ -182,7 +183,7 @@ const Recipes = ({match}) => {
            filter((data) => {
               if(searchTerm === ""){
                   return data
-              } else if (data.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+              } else if (data.title?.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
                       return data
                       }
           })

@@ -1,4 +1,4 @@
-import { Box, Button, Card, Container, FormControl, Grid, InputLabel, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core'
+import { Box, Button, Card, CircularProgress, Container, FormControl, Grid, InputLabel, LinearProgress, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core'
 import React, { useEffect, useState } from 'react';
 import {useHistory} from 'react-router-dom'
 import {useDropzone} from 'react-dropzone';
@@ -147,7 +147,7 @@ const AddSteps = ({match}) => {
     db.collection('stepData').add(steps).then(()=>{
       setLoading(false)
       setMessage('Step Added successfully !')
-      history.go(-1)
+     
     })
   }
 
@@ -173,10 +173,10 @@ const AddSteps = ({match}) => {
   const classes= useStyles();
     return (
       <>
-      <ManualDashboardLayout match={match}/>
-        <div className={classes.wrapper}>
-        <div className={classes.container}>
-          <Card className={classes.content}>
+     
+        <div >
+        <div >
+          <Card >
             <Box
                py={3}
               style={{
@@ -228,7 +228,7 @@ const AddSteps = ({match}) => {
               />
               <TextField
               value={desc}
-               error={desc === ""}
+               
                 variant="outlined"
                 margin="normal"
                 required
@@ -245,6 +245,7 @@ const AddSteps = ({match}) => {
               <FormControl   style={{marginBottom: '20px'}} fullWidth variant='outlined'>
               <InputLabel>Select Type</InputLabel>
               <Select
+              required
               label="Select Type"
               value={type}
                required
@@ -296,7 +297,8 @@ const AddSteps = ({match}) => {
         filesLimit={1}
       />
     
-     <h5>{progress}% Uploaded</h5>
+     {/* <h5>{progress}% Uploaded</h5> */}
+     <LinearProgress style={{marginTop: 10}} variant="determinate" value={progress} />
      <div style={{display: 'flex', justifyContent: 'center'}}>
        {url ?
          getPreview(url)
@@ -310,7 +312,7 @@ const AddSteps = ({match}) => {
 
        <div style={{display: 'flex', justifyContent: 'center', marginTop: '25px'}}>
          {!loading && <Button
-         disabled={progress < 100 || format==="" || file===null}
+
             type="submit"
             style={{width: '50%', color: 'white', background: 'orange'}}
             variant="contained"

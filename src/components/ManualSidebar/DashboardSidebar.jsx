@@ -42,12 +42,7 @@ const items = [
         icon: ActivityIcon,
        
     },
-     {
-        title: 'Add-Step',
-        href: '/Manuals',
-        icon: AddIcon
-
-    },
+   
      {
         title: '3D-Model',
         href: '/Manuals',

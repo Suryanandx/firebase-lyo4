@@ -296,6 +296,7 @@ const updateStep=(id) => {
                         />
                         <InputLabel>Select Type</InputLabel>
                         <Select
+                        required
                         variant='outlined'
                         value={type}                      
                           fullWidth
@@ -313,6 +314,7 @@ const updateStep=(id) => {
                         <br/>
                         <InputLabel >Select Format </InputLabel>
                           <Select
+                          required
                           variant='outlined'
                           value={format}
                             label="Select Format"
@@ -339,12 +341,12 @@ const updateStep=(id) => {
                            </div>
                           
                          }
-                       <Button disabled={disabled || progress < 100 || type===''} style={{color: 'orangered'}} variant='outlined' fullWidth onClick={() => handleImageUpdate(data.id)}>Update Media</Button>
+                       <Button disabled={disabled || progress < 100 || type==='' || file=== null} style={{color: 'orangered'}} variant='outlined' fullWidth onClick={() => handleImageUpdate(data.id)}>Update Media</Button>
                     <DialogActions>
                       <Button color="secondary" onClick={handleEditClose}>Cancel</Button>
                        {!loading && <Button
                           type="submit"
-                          
+                          disabled={title==="" || desc==="" || desc?.length > 300 || title?.length > 35 } 
                           variant="outlined"
                           color="primary"
                           className={classes.submit}

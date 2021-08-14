@@ -227,6 +227,7 @@ const TestGraph = () => {
   };
 
   const onButtonClick = (e) => {
+    e.preventDefault()
       var x, y, z;
       var randomTemp, randomPressure;
       let currTemp=0; let currPressure= 800; let currTime = 0;
@@ -311,6 +312,7 @@ const TestGraph = () => {
 
   return (
       <Card >
+        <form onSubmit={onButtonClick}>
           <Grid container spacing={3} style={{display: 'flex', justifyContent: 'space-evenly', marginLeft: '3%', marginBottom: '12px', marginTop: '5px'}} >
              
                   <Grid item  lg={3}
@@ -321,7 +323,7 @@ const TestGraph = () => {
                  <InputLabel id="demo-simple-select-outlined-label">Select Machine</InputLabel>
                      <Select
                      label='Select Machine'
-                     
+                     required
                     onChange={handleSetChange} >
                            <MenuItem value="">
                           <em>None</em>
@@ -345,7 +347,7 @@ const TestGraph = () => {
             xs={12} >
                   <FormControl className='form-select mt-1 block w-full'  fullWidth variant="outlined">
                   <InputLabel id="demo-simple-select-outlined-label">Select Recipes</InputLabel>
-                   <Select label="Select Recipes"  variant='outlined'  fullWidth onChange={handleChange} >
+                   <Select required label="Select Recipes"  variant='outlined'  fullWidth onChange={handleChange} >
                        
                     {
                         recipes.map(data => (
@@ -364,7 +366,7 @@ const TestGraph = () => {
             xs={12}>
                   <FormControl className='form-select mt-1 block w-full'  fullWidth variant="outlined">
                   <InputLabel id="demo-simple-select-outlined-label">Select Batch</InputLabel>
-                   <Select label='Select Batch'  fullWidth variant='outlined' onChange={(e) => {handleBatchChange(e) }}>
+                   <Select required label='Select Batch'  fullWidth variant='outlined' onChange={(e) => {handleBatchChange(e) }}>
                       
                     {
                         batch.map(data => (
@@ -382,10 +384,11 @@ const TestGraph = () => {
             xl={3}
             xs={12}
               >
-                <Button className=' mt-3 block ' onClick={onButtonClick} style={{backgroundColor: 'orange', color: 'white'}}>Show Graph</Button>
+                <Button type="submit" className=' mt-3 block ' style={{backgroundColor: 'orange', color: 'white'}}>Show Graph</Button>
               </Grid>
               
           </Grid>
+          </form>
                     <Card style={{padding: '15px'}}>
                       <canvas style={{background: 'black'}} ref={chartContainer} />
                     </Card>

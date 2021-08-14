@@ -1,10 +1,11 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, TableCell, TableRow, TextField } from '@material-ui/core'
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TableCell, TableRow, TextField } from '@material-ui/core'
 import { Button } from '@material-ui/core'
 import React, { useState } from 'react'
 import { db } from '../../../firebase'
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 
 import EditIcon from '@material-ui/icons/Edit';
+import { Alert, AlertTitle } from '@material-ui/lab';
 const ItemRow= ({row}) => {
 
     const [step, setStep] = useState(row.step)
@@ -13,6 +14,7 @@ const ItemRow= ({row}) => {
     const [temp1, setTemp] = useState(row.temp1)
     const [pressure, setPressure] = useState(row.pressure)
     const [openEdit, setOpenEdit] = useState(false)
+    const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
       const handleEditOpen = () => {
       setOpenEdit(true)
@@ -35,6 +37,14 @@ const updateRecipeValues=(id) => {
     
   }
 
+  function handleOpen(){
+    setOpen(true)
+  }
+
+  function handleClose(){
+    setOpen(false)
+  }
+
     return (
          <TableRow key={row.id}>
               <TableCell component="th" scope="row">
@@ -46,7 +56,7 @@ const updateRecipeValues=(id) => {
               <TableCell align="right">{row.pressure}</TableCell>
               <TableCell align="right">
                   <Button onClick={() => handleEditOpen()}><EditIcon/></Button>
-                  <Button onClick={() => handleDelete(row.id)}><DeleteSweepIcon/></Button>
+                  <Button onClick={() => handleOpen()}><DeleteSweepIcon/></Button>
                   
                   </TableCell>
                  <Dialog
@@ -55,7 +65,7 @@ const updateRecipeValues=(id) => {
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
                 >
-                    <DialogTitle id="alert-dialog-title">{`Edit ${step}`}</DialogTitle>
+                    <DialogTitle id="alert-dialog-title"><b>Edit {step}</b></DialogTitle>
                     <DialogContent>
                      
                     <form   >
@@ -73,11 +83,12 @@ const updateRecipeValues=(id) => {
                         />
 
                        <TextField
-                        label="Time"
+                        label="Time (min)"
                         defaultValue={time1}
                           variant="outlined"
                           margin="normal"
                           required
+                          type='number'
                           fullWidth
                           id="title"
                           name="title"
@@ -85,23 +96,25 @@ const updateRecipeValues=(id) => {
                           onChange={(e) => setTime(e.target.value)}
                         />
                        <TextField
-                        label="Keep Time"
+                        label="Keep Time (min)"
                         defaultValue={time2}
                           variant="outlined"
                           margin="normal"
                           required
                           fullWidth
+                          type='number'
                           id="title"
                           name="title"
                           autoFocus
                           onChange={(e) => setKeepTime(e.target.value)}
                         />
                         <TextField
-                        label="Temprature"
+                        label="Temperature (deg C)"
                         defaultValue={temp1}
                           variant="outlined"
                           margin="normal"
                           required
+                          type='number'
                           fullWidth
                           id="title"
                           name="title"
@@ -110,15 +123,16 @@ const updateRecipeValues=(id) => {
                         />
                            
                         <TextField
-                        label="Pressure"
+                        label="Pressure (mT)"
                         defaultValue={pressure}
                           variant="outlined"
                           margin="normal"
                           required
                           fullWidth
+                          type='number'
                           id="title"
                           name="title"
-                          autoFocus
+                          asutoFocus
                           onChange={(e) => setPressure(e.target.value)}
                         />
 
@@ -131,7 +145,7 @@ const updateRecipeValues=(id) => {
                           fullWidth
                           variant="outlined"
                           color="primary"
-                         
+                          disabled={step === ''|| temp1 === '' || pressure === '' || time1 === '' || time2 === ''}
                           onClick={(e)=> {
                               updateRecipeValues(row.id)
                                 handleEditClose()
@@ -150,9 +164,34 @@ const updateRecipeValues=(id) => {
                         >Updating values...</Button>
                       }   
                     </DialogActions>
-                     
+                     <Alert severity="info">Incomplete set of data will not allow you to update details !</Alert>
                   </form>
                     </DialogContent>
+                </Dialog>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                  <Alert severity="error" variant="filled">
+                    <AlertTitle><strong>Delete</strong></AlertTitle>
+                    <DialogTitle id="alert-dialog-title">{"Are You Sure You Want To Delete?"}</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText color="white" id="alert-dialog-description">
+                        Deleting will be a permanent action and data pervailing will be permanently deleted and can not be retrieved back.                    </DialogContentText>
+                    </DialogContent>
+                    </Alert>
+                    <DialogActions>
+                    <Button onClick={handleClose} color="primary" variant="outlined">
+                        Disagree
+                    </Button>
+                    <Button   onClick={(e)=>{
+                        handleDelete(row.id);
+                        }} color="secondary" variant="outlined" autoFocus>
+                        Agree
+                    </Button>
+                    </DialogActions>
                 </Dialog>
             </TableRow>
     )

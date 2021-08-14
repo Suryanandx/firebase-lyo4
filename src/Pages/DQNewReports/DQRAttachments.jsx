@@ -1,4 +1,4 @@
-import { Button, Card,Toolbar, makeStyles,Dialog,DialogContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow , Typography} from "@material-ui/core"
+import { Button, Card,Toolbar, makeStyles,Dialog,DialogContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow , Typography, TextField} from "@material-ui/core"
 import { useEffect, useState } from "react"
 import DQRLayout from "../../components/DQRLayout/DQRLayout"
 import { db } from "../../firebase"
@@ -51,7 +51,15 @@ function DQRAttachments({match}) {
 	function handleOpen(){
 		setOpen(true)
 	}
-
+function handleNumChange(e,id){
+  var dno = e.target.value
+  db.collection('DQNewReport')
+		.doc(match.params.id)
+		.collection('content')
+		.doc('attachments')
+		.collection('details')
+    .doc(id).update({dno: dno})
+}
 	function handleClose(){
 		setOpen(false)
 	}
@@ -114,7 +122,9 @@ function DQRAttachments({match}) {
               <TableCell style={{background: '#E8F6EF'}} component="th" scope="row">
                 {row.desc}
               </TableCell>
-              <TableCell align="right">{row.dno}</TableCell>
+              <TableCell align="right">
+              <TextField variant='outlined' defaultValue={row.dno} onChange={(e) => handleNumChange(e, row.id)} className='text-xl text-blue-gray-500 text-center'/>
+              </TableCell>
               <TableCell align="right">{row.rev}</TableCell>
 	     
             </TableRow>

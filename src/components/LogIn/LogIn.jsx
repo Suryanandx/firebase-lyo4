@@ -84,7 +84,7 @@ export default function LogIn() {
       await login(email,password)
       history.push("/")
     } catch {
-      setError("Failed to Login")
+      setError("Failed to Login. Invalid credentials !")
     }
 
     setLoading(false)

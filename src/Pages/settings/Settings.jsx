@@ -31,7 +31,7 @@ const Settings = () => {
         <section class="text-gray-600 body-font">
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
              <Typography variant='h3' gutterBottom align='left'><b>Settings</b></Typography>
-             <Typography variant='body1' gutterBottom align='right'>Web app Version : 1.6.4</Typography>
+             <Typography variant='body1' gutterBottom align='right'>Web app Version : 1.6.6</Typography>
           </div>
           <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto flex items-center md:flex-row flex-col">

@@ -93,33 +93,33 @@ const AddManuals = ({match}) => {
            disabled
            onChange ={(e) => setMid(e.target.value)}
            />
+           
           <TextField
           value={title}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="content_name"
-            label="Manual Title"
-            name="content_name"
-            autoFocus
-            error={title==="" || title.length > 35}
-            onChange={(e) => setContentName(e.target.value)}
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="content_name"
+          label="Manual Title"
+          name="content_name"
+          autoFocus
+          onChange={(e) => setContentName(e.target.value)}
             
           />
            <TextField
            rows={5}
            multiline
-          value={desc}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="content_name"
-            label="Manual Description"
-            name="content_name"
-            error={desc.length > 300}
-            onChange={(e) => setDesc(e.target.value)}
+           value={desc}
+           variant="outlined"
+           margin="normal"
+           required
+           fullWidth
+           id="content_name"
+           label="Manual Description"
+           name="content_name"
+           error={desc.length > 300}
+           onChange={(e) => setDesc(e.target.value)}
             
           />
               <FormHelperText>Description should be {desc.length}/300</FormHelperText>
@@ -128,7 +128,7 @@ const AddManuals = ({match}) => {
             type="submit"
             fullWidth
             variant="contained"
-            disabled={title==="" || desc===""}
+          
             className={classes.submit}
           >
             Add Manual

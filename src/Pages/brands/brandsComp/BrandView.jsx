@@ -78,7 +78,7 @@ function BrandView({module, match}) {
 				
 			<DialogActions>
 				<Button onClick={handleClose}>Cancel</Button>
-				<Button onClick={handleUpdate} style={{backgroundColor: 'orange', color: 'whitesmoke'}}>Update</Button>
+				<Button disabled={title ==='' || desc===''} onClick={handleUpdate} style={{backgroundColor: 'orange', color: 'whitesmoke'}}>Update</Button>
 			</DialogActions>
 			</Dialog>
 			{/* Open delete dialog */}

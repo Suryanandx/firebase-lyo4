@@ -53,6 +53,7 @@ function AddApproval({match}) {
 	
 	return (
 		<div>
+			<form>
 			<Typography variant='h3'align='center' gutterBottom >Add Details</Typography>
 			<div>
 				<TextField variant='outlined' fullWidth label='Name' style={{marginBottom: '25px'}} value={name} onChange={(e) => setName(e.target.value)} />
@@ -71,7 +72,7 @@ function AddApproval({match}) {
 					</div>
 					:
 					<div style={{display: 'flex', justifyContent: 'center'}}>
-						<Button disabled={process < 100 || name === '' } onClick={handleSubmitV} style={{background: 'orange', color: 'white'}} >Add for Reviewer</Button>
+						<Button  onClick={handleSubmitV} style={{background: 'orange', color: 'white'}} >Add for Reviewer</Button>
 					</div>
 				}
 			</div>
@@ -82,6 +83,8 @@ function AddApproval({match}) {
 				</div>
 				
 			}
+			</form>
+		
 		</div>
 	)
 }

@@ -69,7 +69,7 @@ function DQNewView({report}) {
           </>
        <DialogActions >
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button style={{background: 'orange', color: 'white'}} onClick={handleSubmit} > Update </Button>
+                <Button disabled={name === '' || desc === '' || desc>300 || name > 35} style={{background: 'orange', color: 'white'}} onClick={handleSubmit} > Update </Button>
               </DialogActions>
         </div>
             </Dialog>

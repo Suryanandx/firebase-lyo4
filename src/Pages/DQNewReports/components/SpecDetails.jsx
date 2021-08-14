@@ -11,6 +11,7 @@ function SpecDetails({match, tid}) {
 	const [desc, setDesc] = useState('')
     const [issueComment, setIssueComment] = useState('')
     const [open,setOpen] = useState(false)
+	const [activeId, setActiveId] = useState('')
 
 	useEffect(() => {
 		db.collection('DQNewReport').doc(match.params.id)
@@ -35,7 +36,12 @@ function SpecDetails({match, tid}) {
 		.collection('content').doc('designSpecs').collection('points')
 		.doc(id).delete()
 	}
-
+	function handleUpdateComment(id){
+		db.collection('issueData').doc(id).update({content: issueComment})
+	  }
+	  function activateId(id){
+		setActiveId(id)
+	  }
 	function handleSubmit(){
 		db.collection('DQNewReport').doc(match.params.id)
 		.collection('content').doc('designSpecs').collection('points')
@@ -87,6 +93,7 @@ function SpecDetails({match, tid}) {
 					   {data.issue_id !== ""? <Button style={{marginLeft: '20px', color: 'orange'}} onClick={(e) => {
                   handleOpen(e);
                   handleComment(data.issue_id)
+				  activateId(data.issue_id)
                 }}>Check</Button> : <p></p>}
                     </div>
 					<div style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -107,7 +114,10 @@ function SpecDetails({match, tid}) {
         <Button onClick={handleClose}>Close</Button>
       </Toolbar>
               <b className='text-xl underline text-bold text-center mb-3'>Comment</b>
-              <p className='text-xl text-blue-gray-500 text-center'>{issueComment}</p>
+			  <TextField variant='outlined' value={issueComment} onChange={(e) => setIssueComment(e.target.value)} className='text-xl text-blue-gray-500 text-center'/>
+              <Button onClick={(e) => {handleUpdateComment(activeId);
+				handleClose()
+			}}>Update</Button> 
     </Dialog>
 		</div>
 	)

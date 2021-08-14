@@ -67,7 +67,8 @@ export default function DQConfigD({match}) {
 	function handleCloseAdd(){
 		setOpenAdd(false)
 	}
-    function handleSubmit(){
+    function handleSubmit(e){
+      e.preventDefault()
         const  index = config.length
 		db.collection('DQNew')
 		.doc(match.params.id)
@@ -131,13 +132,13 @@ export default function DQConfigD({match}) {
             	</Table>
 		</div>
         <Dialog open={openAdd} fullWidth onClose={handleCloseAdd}>
-
-<Typography variant='h4' align='center'  ><b>Add New Modules</b></Typography>
+<form onSubmit={handleSubmit}>
+  <Typography variant='h4' align='center'  ><b>Add New Modules</b></Typography>
 <DialogContent>
-<TextField style={{marginBottom: '5%'}} label='Title'  variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
-<TextField style={{marginBottom: '5%'}} rows={7} multiLine label='Description' variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
+<TextField required style={{marginBottom: '5%'}} label='Title'  variant='outlined' fullWidth onChange={(e) => setTitle(e.target.value)}/>
+<TextField required style={{marginBottom: '5%'}} rows={7} multiLine label='Description' variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
 
-<Select onChange={(e) => setType(e.target.value)} value={type} variant='outlined' fullWidth>
+<Select required onChange={(e) => setType(e.target.value)} value={type} variant='outlined' fullWidth>
   <option selected value={0}>2 Row (Type 0)</option>
   <option value={1}>SERVICES REQUIRED FROM CUSTOMER END</option>
 </Select>
@@ -145,8 +146,10 @@ export default function DQConfigD({match}) {
 </DialogContent>
 <DialogActions>
 <Button onClick={handleCloseAdd} variant='contained' color='secondary'>Cancel</Button>
-<Button disabled={title===''|| desc ==='' } style={{background:'orange', color:'white'}} onClick={handleSubmit}>Add New</Button>
+<Button type="submit" style={{background:'orange', color:'white'}} >Add New</Button>
 </DialogActions>
+</form>
+
 
 </Dialog>
 		

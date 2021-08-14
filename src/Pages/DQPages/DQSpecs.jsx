@@ -103,7 +103,8 @@ function DQSpecs({match}) {
 	}
 	
 
-	function handleSubmit(){
+	function handleSubmit(e){
+		e.preventDefault()
 		db.collection('DQNew')
 		.doc(match.params.id)
 		.collection('content')
@@ -112,7 +113,8 @@ function DQSpecs({match}) {
 		.add({ desc,index})
 	}
 
-	function handleSubmitNew(){
+	function handleSubmitNew(e){
+		e.preventDefault()
 		db.collection('DQNew')
 		.doc(match.params.id)
 		.collection('content')
@@ -219,14 +221,14 @@ function DQSpecs({match}) {
 					</>
 					 :
 
-					<div>
+					<form onSubmit={handleSubmitNew}>
 						<div style={{padding: '10%', paddingTop: '0'}} >
 						<Typography variant='h1' align='center' gutterBottom><b>Add New Specification Details</b></Typography>	
 						<TextField style={{marginBottom: '20px'}} label='Title' variant='outlined' fullWidth onChange={(e) => setName(e.target.value)}/>
 						<TextField style={{marginBottom: '5%'}} label='Description' multiLine rows={7}  variant='outlined' fullWidth onChange={(e) => setDesc(e.target.value)}/>  
-						<Button fullWidth style={{background: 'orange', color: 'white'}} onClick={handleSubmitNew}>Add New</Button>
+						<Button type="submit" disabled={ desc>300 || name > 35} fullWidth style={{background: 'orange', color: 'white'}} >Add New</Button>
 					</div>
-					</div>
+					</form>
 			
 		
 		}
@@ -238,7 +240,8 @@ function DQSpecs({match}) {
       </> 
 	
 		<Dialog open={openAdd} fullWidth onClose={handleCloseAdd}>
-          <Typography variant='h4' align='center' gutterBottom><b>Add New Specifications</b></Typography>
+			<form onSubmit={handleSubmit}>
+				  <Typography variant='h4' align='center' gutterBottom><b>Add New Specifications</b></Typography>
 	 <Alert severity='info'>Reviews are generally added from glass</Alert>
 	  <DialogContent>
 		   <>
@@ -248,9 +251,11 @@ function DQSpecs({match}) {
 	  </> 
 	  </DialogContent>
 	  <DialogActions>
-		  <Button disabled={desc===''} style={{background: 'orange', color:'white'}} onClick={handleSubmit}>Add New</Button>
+		  <Button type="submit" style={{background: 'orange', color:'white'}} >Add New</Button>
 	  </DialogActions>
 
+			</form>
+        
 	
           
       </Dialog>
